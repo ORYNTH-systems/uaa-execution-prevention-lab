@@ -6,6 +6,7 @@ from reconciliation import (
     intent_drift_detected,
     authorization_expired,
     counterparty_risk_state_changed,
+    delegation_revoked,
 )
 from admissibility import evaluate_admissibility, collect_violations
 from metrics import generate_metrics
@@ -34,6 +35,8 @@ def load_case(path: str) -> ExecutionCase:
         initial_counterparty_status=initial_state.get("counterparty_status", ""),
         current_counterparty_status=state_change.get("counterparty_status", ""),
         risk_flag=state_change.get("risk_flag", False),
+        initial_delegation_status=initial_state.get("delegation_status", ""),
+        current_delegation_status=state_change.get("delegation_status", ""),
     )
 
 
@@ -88,6 +91,11 @@ def print_result(case: ExecutionCase, result: EvaluationResult) -> None:
         print(f"Risk Flag: {case.risk_flag}")
         print(f"Counterparty Risk State Changed: {counterparty_risk_state_changed(case)}")
 
+    if case.initial_delegation_status:
+        print(f"Initial Delegation Status: {case.initial_delegation_status}")
+        print(f"Current Delegation Status: {case.current_delegation_status}")
+        print(f"Delegation Revoked: {delegation_revoked(case)}")
+
     print(f"Violations: {result.violations}")
     print(f"Admissibility: {result.admissibility}")
     print(f"Execution Result: {result.execution_result}")
@@ -128,6 +136,7 @@ def main() -> None:
         "cases/EP-003_HEALTHCARE_AUTHORIZATION_EXPIRY.json",
         "cases/EP-004_FINANCIAL_SETTLEMENT_STATE_CHANGE.json",
         "cases/EP-005_COMPOUND_FAILURE.json",
+        "cases/EP-006_DELEGATION_REVOCATION.json",
     ]
 
     results = []

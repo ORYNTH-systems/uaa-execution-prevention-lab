@@ -33,6 +33,9 @@ def intent_drift_detected(case: ExecutionCase) -> bool:
     if not case.authorized_intent:
         return False
 
+    if not case.current_action:
+        return False
+
     return case.authorized_intent != case.current_action
 
 
@@ -65,3 +68,14 @@ def counterparty_risk_state_changed(case: ExecutionCase) -> bool:
         case.initial_counterparty_status
         != case.current_counterparty_status
     )
+
+
+def delegation_revoked(case: ExecutionCase) -> bool:
+    """
+    EP-006:
+    Detect whether delegated authority was revoked before execution.
+    """
+    if not case.initial_delegation_status:
+        return False
+
+    return case.current_delegation_status == "REVOKED"

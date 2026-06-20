@@ -1,31 +1,26 @@
 {
-"case_id": "EP-006",
-"title": "Delegation Revocation Before Execution",
+  "case_id": "EP-006",
+  "title": "Delegation Revocation Before Execution",
 
-"initial_state": {
-"authorization": "VALID",
+  "initial_state": {
+    "authorization": "VALID",
+    "delegation_status": "ACTIVE",
+    "authorized_intent": "Approve supplier onboarding request"
+  },
 
-```
-"delegation_status": "ACTIVE",
+  "state_change": {
+    "delegation_status": "REVOKED"
+  },
 
-"authorized_intent": "Approve supplier onboarding request"
-```
+  "execution_attempt": {
+    "requested": true,
+    "action": "Approve supplier onboarding request"
+  },
 
-},
-
-"state_change": {
-"delegation_status": "REVOKED"
-},
-
-"execution_attempt": {
-"requested": true,
-"action": "Approve supplier onboarding request"
-},
-
-"expected_result": {
-"authorization_valid": true,
-"admissibility": false,
-"execution_result": "DECLINED",
-"failure_prevented": true
-}
+  "expected_result": {
+    "authorization_valid": true,
+    "admissibility": false,
+    "execution_result": "DECLINED",
+    "failure_prevented": true
+  }
 }

@@ -17,6 +17,8 @@ class ExecutionCase:
     initial_counterparty_status: str = ""
     current_counterparty_status: str = ""
     risk_flag: bool = False
+    initial_delegation_status: str = ""
+    current_delegation_status: str = ""
 
 
 @dataclass(frozen=True)

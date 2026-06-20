@@ -4,6 +4,7 @@ from reconciliation import (
     intent_drift_detected,
     authorization_expired,
     counterparty_risk_state_changed,
+    delegation_revoked,
 )
 
 ADMISSIBILITY_RULES = [
@@ -11,6 +12,7 @@ ADMISSIBILITY_RULES = [
     ("intent_drift_detected", intent_drift_detected),
     ("authorization_expired", authorization_expired),
     ("counterparty_risk_state_changed", counterparty_risk_state_changed),
+    ("delegation_revoked", delegation_revoked),
 ]
 
 

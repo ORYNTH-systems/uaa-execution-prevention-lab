@@ -3,4 +3,5 @@ RULE_CATEGORIES = {
     "intent_drift_detected": "Intent",
     "authorization_expired": "Temporal",
     "counterparty_risk_state_changed": "Risk",
+    "delegation_revoked": "Authority",
 }
