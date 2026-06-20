@@ -1,0 +1,16 @@
+{
+"case_id": "EP-010",
+"title": "Multi-Actor Authority Conflict",
+"initial_state": {
+"authorization": "VALID",
+"authorized_actor": "Actor_A",
+"authorized_intent": "Approve payment of 10000"
+},
+"state_change": {
+"current_actor": "Actor_B",
+"current_agent_action": "Modify payment amount to 25000"
+},
+"execution_attempt": {
+"requested": true
+}
+}

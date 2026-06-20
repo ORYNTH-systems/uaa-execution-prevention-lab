@@ -164,6 +164,7 @@ def main() -> None:
         "cases/EP-007_IDENTITY_CONTINUITY_FAILURE.json",
         "cases/EP-008_RESOURCE_CONSTRAINT_VIOLATION.json",
         "cases/EP-009_POLICY_CHANGE_BEFORE_EXECUTION.json",
+        "cases/EP-010_MULTI_ACTOR_AUTHORITY_CONFLICT.json",
     ]
 
     results = []
