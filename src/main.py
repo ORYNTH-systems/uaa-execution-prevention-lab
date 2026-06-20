@@ -8,6 +8,7 @@ from reconciliation import (
     counterparty_risk_state_changed,
 )
 from admissibility import evaluate_admissibility, collect_violations
+from metrics import generate_metrics
 
 
 def load_case(path: str) -> ExecutionCase:
@@ -93,6 +94,27 @@ def print_result(case: ExecutionCase, result: EvaluationResult) -> None:
     print(f"Failure Prevented: {result.failure_prevented}")
 
 
+def print_metrics(results: list[EvaluationResult]) -> None:
+    metrics = generate_metrics(results)
+
+    print("=== METRICS ===")
+    print(f"Total Demonstrations: {metrics['total_demonstrations']}")
+    print(f"Total Prevented Failures: {metrics['total_prevented_failures']}")
+
+    prevention_rate = (
+        metrics["total_prevented_failures"]
+        / metrics["total_demonstrations"]
+        * 100
+    )
+
+    print(f"Prevention Rate: {prevention_rate:.0f}%")
+    print()
+    print("Rule Hits:")
+
+    for rule_name, count in metrics["rule_hits"].items():
+        print(f"- {rule_name}: {count}")
+
+
 def main() -> None:
     cases = [
         "cases/EP-001_VENDOR_BLACKLIST.json",
@@ -102,16 +124,20 @@ def main() -> None:
         "cases/EP-005_COMPOUND_FAILURE.json",
     ]
 
+    results = []
+
     for index, case_path in enumerate(cases):
         case = load_case(case_path)
         result = evaluate_case(case)
+        results.append(result)
         print_result(case, result)
 
         if index < len(cases) - 1:
             print()
 
+    print()
+    print_metrics(results)
+
 
 if __name__ == "__main__":
     main()
-
-
