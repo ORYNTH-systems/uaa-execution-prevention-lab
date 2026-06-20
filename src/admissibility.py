@@ -6,6 +6,13 @@ from reconciliation import (
     counterparty_risk_state_changed,
 )
 
+ADMISSIBILITY_RULES = [
+    vendor_state_changed,
+    intent_drift_detected,
+    authorization_expired,
+    counterparty_risk_state_changed,
+]
+
 
 def evaluate_admissibility(case: ExecutionCase) -> bool:
     """
@@ -16,16 +23,8 @@ def evaluate_admissibility(case: ExecutionCase) -> bool:
     Admissibility is reconstructed.
     """
 
-    if vendor_state_changed(case):
-        return False
-
-    if intent_drift_detected(case):
-        return False
-
-    if authorization_expired(case):
-        return False
-
-    if counterparty_risk_state_changed(case):
-        return False
+    for rule in ADMISSIBILITY_RULES:
+        if rule(case):
+            return False
 
     return True
