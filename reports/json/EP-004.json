@@ -1,0 +1,12 @@
+{
+  "case_id": "EP-004",
+  "title": "Financial Settlement State Change Before Execution",
+  "authorization_valid": true,
+  "reconciliation_required": true,
+  "admissibility": false,
+  "execution_result": "DECLINED",
+  "failure_prevented": true,
+  "violations": [
+    "counterparty_risk_state_changed"
+  ]
+}

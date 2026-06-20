@@ -1,4 +1,6 @@
+import argparse
 import json
+import os
 
 from models import ExecutionCase, EvaluationResult
 from reconciliation import (
@@ -13,6 +15,20 @@ from reconciliation import (
 )
 from admissibility import evaluate_admissibility, collect_violations
 from metrics import generate_metrics
+
+
+CASE_PATHS = [
+    "cases/EP-001_VENDOR_BLACKLIST.json",
+    "cases/EP-002_AGENT_ACTION_DRIFT.json",
+    "cases/EP-003_HEALTHCARE_AUTHORIZATION_EXPIRY.json",
+    "cases/EP-004_FINANCIAL_SETTLEMENT_STATE_CHANGE.json",
+    "cases/EP-005_COMPOUND_FAILURE.json",
+    "cases/EP-006_DELEGATION_REVOCATION.json",
+    "cases/EP-007_IDENTITY_CONTINUITY_FAILURE.json",
+    "cases/EP-008_RESOURCE_CONSTRAINT_VIOLATION.json",
+    "cases/EP-009_POLICY_CHANGE_BEFORE_EXECUTION.json",
+    "cases/EP-010_MULTI_ACTOR_AUTHORITY_CONFLICT.json",
+]
 
 
 def load_case(path: str) -> ExecutionCase:
@@ -77,6 +93,31 @@ def evaluate_case(case: ExecutionCase) -> EvaluationResult:
         failure_prevented=failure_prevented,
         violations=violations,
     )
+
+
+def assert_expected_result(result: EvaluationResult) -> None:
+    assert result.execution_result == "DECLINED"
+    assert result.failure_prevented is True
+
+
+def write_json_evidence(case: ExecutionCase, result: EvaluationResult) -> None:
+    os.makedirs("reports/json", exist_ok=True)
+
+    evidence = {
+        "case_id": case.case_id,
+        "title": case.title,
+        "authorization_valid": result.authorization_valid,
+        "reconciliation_required": result.reconciliation_required,
+        "admissibility": result.admissibility,
+        "execution_result": result.execution_result,
+        "failure_prevented": result.failure_prevented,
+        "violations": result.violations,
+    }
+
+    output_path = f"reports/json/{case.case_id}.json"
+
+    with open(output_path, "w", encoding="utf-8") as file:
+        json.dump(evidence, file, indent=2)
 
 
 def print_result(case: ExecutionCase, result: EvaluationResult) -> None:
@@ -153,25 +194,34 @@ def print_metrics(results: list[EvaluationResult]) -> None:
         print(f"- {category_name}: {count}")
 
 
-def main() -> None:
-    cases = [
-        "cases/EP-001_VENDOR_BLACKLIST.json",
-        "cases/EP-002_AGENT_ACTION_DRIFT.json",
-        "cases/EP-003_HEALTHCARE_AUTHORIZATION_EXPIRY.json",
-        "cases/EP-004_FINANCIAL_SETTLEMENT_STATE_CHANGE.json",
-        "cases/EP-005_COMPOUND_FAILURE.json",
-        "cases/EP-006_DELEGATION_REVOCATION.json",
-        "cases/EP-007_IDENTITY_CONTINUITY_FAILURE.json",
-        "cases/EP-008_RESOURCE_CONSTRAINT_VIOLATION.json",
-        "cases/EP-009_POLICY_CHANGE_BEFORE_EXECUTION.json",
-        "cases/EP-010_MULTI_ACTOR_AUTHORITY_CONFLICT.json",
-    ]
+def selected_case_paths(case_id: str | None) -> list[str]:
+    if case_id is None or case_id == "all":
+        return CASE_PATHS
 
+    normalized_case_id = case_id.upper()
+
+    for path in CASE_PATHS:
+        if normalized_case_id in path:
+            return [path]
+
+    raise ValueError(f"Unknown case id: {case_id}")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--case", default="all")
+    args = parser.parse_args()
+
+    cases = selected_case_paths(args.case)
     results = []
 
     for index, case_path in enumerate(cases):
         case = load_case(case_path)
         result = evaluate_case(case)
+
+        assert_expected_result(result)
+        write_json_evidence(case, result)
+
         results.append(result)
         print_result(case, result)
 
