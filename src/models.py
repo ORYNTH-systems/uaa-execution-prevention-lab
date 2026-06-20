@@ -27,3 +27,4 @@ class EvaluationResult:
     admissibility: bool
     execution_result: str
     failure_prevented: bool
+    violations: list[str]

@@ -7,7 +7,7 @@ from reconciliation import (
     authorization_expired,
     counterparty_risk_state_changed,
 )
-from admissibility import evaluate_admissibility
+from admissibility import evaluate_admissibility, collect_violations
 
 
 def load_case(path: str) -> ExecutionCase:
@@ -39,6 +39,7 @@ def load_case(path: str) -> ExecutionCase:
 def evaluate_case(case: ExecutionCase) -> EvaluationResult:
     authorization_valid = case.authorization == "VALID"
     reconciliation = reconciliation_required(case)
+    violations = collect_violations(case)
     admissibility = evaluate_admissibility(case)
 
     execution_result = (
@@ -61,6 +62,7 @@ def evaluate_case(case: ExecutionCase) -> EvaluationResult:
         admissibility=admissibility,
         execution_result=execution_result,
         failure_prevented=failure_prevented,
+        violations=violations,
     )
 
 
@@ -85,6 +87,7 @@ def print_result(case: ExecutionCase, result: EvaluationResult) -> None:
         print(f"Risk Flag: {case.risk_flag}")
         print(f"Counterparty Risk State Changed: {counterparty_risk_state_changed(case)}")
 
+    print(f"Violations: {result.violations}")
     print(f"Admissibility: {result.admissibility}")
     print(f"Execution Result: {result.execution_result}")
     print(f"Failure Prevented: {result.failure_prevented}")

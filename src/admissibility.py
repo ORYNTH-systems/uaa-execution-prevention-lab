@@ -7,11 +7,21 @@ from reconciliation import (
 )
 
 ADMISSIBILITY_RULES = [
-    vendor_state_changed,
-    intent_drift_detected,
-    authorization_expired,
-    counterparty_risk_state_changed,
+    ("vendor_state_changed", vendor_state_changed),
+    ("intent_drift_detected", intent_drift_detected),
+    ("authorization_expired", authorization_expired),
+    ("counterparty_risk_state_changed", counterparty_risk_state_changed),
 ]
+
+
+def collect_violations(case: ExecutionCase) -> list[str]:
+    violations = []
+
+    for rule_name, rule in ADMISSIBILITY_RULES:
+        if rule(case):
+            violations.append(rule_name)
+
+    return violations
 
 
 def evaluate_admissibility(case: ExecutionCase) -> bool:
@@ -23,8 +33,4 @@ def evaluate_admissibility(case: ExecutionCase) -> bool:
     Admissibility is reconstructed.
     """
 
-    for rule in ADMISSIBILITY_RULES:
-        if rule(case):
-            return False
-
-    return True
+    return len(collect_violations(case)) == 0
