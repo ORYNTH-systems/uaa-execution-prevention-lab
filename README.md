@@ -8,28 +8,64 @@ The UAA Execution Prevention Lab demonstrates a core architectural principle:
 
 > Prior authorization does not imply current execution admissibility.
 
-The objective is to provide executable demonstrations showing how reconciliation of current reality state can prevent invalid execution events.
+The repository provides executable evidence showing how reconciliation of current reality state can prevent invalid execution events before they occur.
+
+---
+
+## Current Results
+
+| Metric                   | Value |
+| ------------------------ | ----- |
+| Total Demonstrations     | 10    |
+| Total Prevented Failures | 10    |
+| Unauthorized Executions  | 0     |
+| Prevention Rate          | 100%  |
+
+---
+
+## Demonstrated Principle
+
+Across all demonstrations:
+
+```text
+Authorization Valid: True
+
+Admissibility: False
+
+Execution Result: DECLINED
+
+Failure Prevented: True
+```
+
+Execution decisions are determined by current admissibility state rather than historical authorization state.
+
+---
 
 ## Evidence Chain
 
 Doctrine
+
 ↓
-Specification
+
+Rule Mapping
+
 ↓
+
 Reference Implementation
+
 ↓
-Execution Prevention Evidence
 
-## Current Corpus
+Execution Prevention Cases
 
-The repository currently contains 10 execution-prevention demonstrations.
+↓
 
-| Metric                           | Value |
-| -------------------------------- | ----- |
-| Total Demonstrations             | 10    |
-| Total Prevented Failures         | 10    |
-| Observed Unauthorized Executions | 0     |
-| Prevention Rate                  | 100%  |
+Structured JSON Evidence
+
+↓
+
+Replayable Demonstrations
+
+---
 
 ## Demonstration Cases
 
@@ -46,10 +82,20 @@ The repository currently contains 10 execution-prevention demonstrations.
 | EP-009 | Policy Change Before Execution    |
 | EP-010 | Multi-Actor Authority Conflict    |
 
-## Run the Demonstration
+---
+
+## Quick Start
+
+Run the full evidence corpus:
 
 ```powershell
-python src\main.py
+python src\main.py --all
+```
+
+Run an individual demonstration:
+
+```powershell
+python src\main.py --case EP-004
 ```
 
 Expected result:
@@ -60,18 +106,45 @@ Total Prevented Failures: 10
 Prevention Rate: 100%
 ```
 
+---
+
 ## Repository Structure
 
 ```text
-doctrine/
-spec/
+README.md
+
 cases/
+doctrine/
+release/
 reports/
+spec/
 src/
 ```
 
-## Status
+---
 
-Phase 1 complete: 10-case execution-prevention evidence corpus.
+## Included Artifacts
 
-Next phase: structured JSON evidence output, case replay commands, and expected-vs-actual assertions.
+* 10 execution-prevention demonstrations
+* Structured JSON evidence output
+* Deterministic assertions
+* Case replay support
+* Evidence library
+* Executive summary
+* Real-world mappings
+* Release documentation
+* v0.1 release tag
+
+---
+
+## Release Status
+
+Version: v0.1
+
+Status: Release Candidate
+
+Evidence Corpus: Complete
+
+Replay Support: Enabled
+
+Structured Evidence Output: Enabled
