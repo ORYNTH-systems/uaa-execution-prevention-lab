@@ -4,6 +4,7 @@ from models import ExecutionCase, EvaluationResult
 from reconciliation import (
     reconciliation_required,
     intent_drift_detected,
+    authorization_expired,
 )
 from admissibility import evaluate_admissibility
 
@@ -25,6 +26,9 @@ def load_case(path: str) -> ExecutionCase:
         execution_requested=execution_attempt.get("requested", False),
         authorized_intent=initial_state.get("authorized_intent", ""),
         current_action=state_change.get("current_agent_action", ""),
+        authorization_expiration=initial_state.get("authorization_expiration", ""),
+        current_date=state_change.get("current_date", ""),
+        current_authorization_status=state_change.get("authorization_status", ""),
     )
 
 
@@ -66,6 +70,11 @@ def print_result(case: ExecutionCase, result: EvaluationResult) -> None:
         print(f"Current Action: {case.current_action}")
         print(f"Intent Drift Detected: {intent_drift_detected(case)}")
 
+    if case.authorization_expiration:
+        print(f"Authorization Expiration: {case.authorization_expiration}")
+        print(f"Current Date: {case.current_date}")
+        print(f"Authorization Expired: {authorization_expired(case)}")
+
     print(f"Admissibility: {result.admissibility}")
     print(f"Execution Result: {result.execution_result}")
     print(f"Failure Prevented: {result.failure_prevented}")
@@ -75,6 +84,7 @@ def main() -> None:
     cases = [
         "cases/EP-001_VENDOR_BLACKLIST.json",
         "cases/EP-002_AGENT_ACTION_DRIFT.json",
+        "cases/EP-003_HEALTHCARE_AUTHORIZATION_EXPIRY.json",
     ]
 
     for index, case_path in enumerate(cases):

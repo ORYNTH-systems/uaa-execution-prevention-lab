@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 @dataclass(frozen=True)
 class ExecutionCase:
     case_id: str
@@ -10,6 +11,10 @@ class ExecutionCase:
     execution_requested: bool
     authorized_intent: str = ""
     current_action: str = ""
+    authorization_expiration: str = ""
+    current_date: str = ""
+    current_authorization_status: str = ""
+
 
 @dataclass(frozen=True)
 class EvaluationResult:

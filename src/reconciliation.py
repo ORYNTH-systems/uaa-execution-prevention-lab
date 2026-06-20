@@ -15,6 +15,9 @@ def vendor_state_changed(case: ExecutionCase) -> bool:
     Detect whether vendor state changed between
     authorization and execution.
     """
+    if not case.initial_vendor_status:
+        return False
+
     return (
         case.initial_vendor_status
         != case.current_vendor_status
@@ -31,3 +34,17 @@ def intent_drift_detected(case: ExecutionCase) -> bool:
         return False
 
     return case.authorized_intent != case.current_action
+
+
+def authorization_expired(case: ExecutionCase) -> bool:
+    """
+    EP-003:
+    Detect whether authorization expired before execution.
+    """
+    if case.current_authorization_status == "EXPIRED":
+        return True
+
+    if not case.authorization_expiration or not case.current_date:
+        return False
+
+    return case.current_date > case.authorization_expiration

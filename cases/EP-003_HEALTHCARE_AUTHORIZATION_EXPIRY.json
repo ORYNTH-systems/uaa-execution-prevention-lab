@@ -1,0 +1,35 @@
+{
+"case_id": "EP-003",
+"title": "Healthcare Authorization Expiry Before Procedure",
+
+"doctrine_reference": [
+"UAA-D-003",
+"UAA-D-004",
+"UAA-D-005",
+"UAA-D-008"
+],
+
+"initial_state": {
+"authorization": "VALID",
+"authorization_date": "2026-06-01",
+"authorization_expiration": "2026-06-15",
+"procedure": "MRI_SCAN"
+},
+
+"state_change": {
+"current_date": "2026-06-20",
+"authorization_status": "EXPIRED"
+},
+
+"execution_attempt": {
+"requested": true
+},
+
+"expected_evaluation": {
+"reconciliation_required": true,
+"admissibility": false,
+"execution_result": "DECLINED"
+},
+
+"assertion": "Prior admissibility does not imply future admissibility."
+}
