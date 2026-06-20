@@ -1,0 +1,26 @@
+{
+  "case_id": "EP-008",
+  "title": "Resource Constraint Violation Before Execution",
+
+  "initial_state": {
+    "authorization": "VALID",
+    "resource_limit": 1000,
+    "authorized_intent": "Generate monthly analytics report"
+  },
+
+  "state_change": {
+    "resource_required": 2500
+  },
+
+  "execution_attempt": {
+    "requested": true,
+    "action": "Generate monthly analytics report"
+  },
+
+  "expected_result": {
+    "authorization_valid": true,
+    "admissibility": false,
+    "execution_result": "DECLINED",
+    "failure_prevented": true
+  }
+}
