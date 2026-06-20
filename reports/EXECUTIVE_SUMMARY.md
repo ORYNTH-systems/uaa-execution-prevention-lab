@@ -1,39 +1,53 @@
 ## Additional Reviewer Resources
 
-The repository includes supplemental materials to support independent review and reproducibility.
+This repository includes supplemental artifacts designed for independent verification, reproducibility, and audit clarity.
 
-### Evidence Library
+---
 
-Provides a complete catalog of all demonstrations, metrics, rule hits, category hits, and evidence coverage.
+## Evidence Library
 
-### Real World Mappings
+A complete catalog of all execution-prevention demonstrations, including:
 
-Maps each execution-prevention demonstration to a representative real-world failure scenario.
+- Case identifiers
+- Violations triggered
+- Rule hit counts
+- Category-level aggregation
+- Outcome metrics
+- Prevention rate summary
 
-### Structured JSON Evidence
+---
 
-Each demonstration generates a machine-readable evidence artifact containing:
+## Real-World Mappings
 
-* Case identifier
-* Admissibility result
-* Execution result
-* Failure-prevention status
-* Triggered violations
+Maps each execution-prevention case to a representative real-world failure scenario to contextualize system behavior.
 
-### Replay Support
+Each mapping links:
 
-Reviewers can reproduce results using:
+- Abstract failure class
+- System-level condition
+- Equivalent real-world risk pattern
+
+---
+
+## Structured JSON Evidence
+
+Each execution case produces a machine-readable artifact containing:
+
+- case_id
+- admissibility result
+- execution result
+- failure_prevented flag
+- triggered violations
+
+These outputs enable deterministic validation and external reproducibility.
+
+---
+
+## Replay Support
+
+All demonstrations can be re-executed deterministically.
+
+### Run full corpus
 
 ```powershell
 python src\main.py --all
-```
-
-or execute individual demonstrations:
-
-```powershell
-python src\main.py --case EP-004
-```
-
-### Technical Summary
-
-Provides a concise overview of doctrine, implementation, evidence generation, and demonstrated outcomes.

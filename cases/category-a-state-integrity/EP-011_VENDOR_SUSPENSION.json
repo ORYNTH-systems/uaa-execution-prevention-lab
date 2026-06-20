@@ -1,0 +1,14 @@
+{
+  "case_id": "EP-011",
+  "title": "Vendor Suspension Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "vendor_status": "SUSPENDED"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}
