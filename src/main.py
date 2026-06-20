@@ -114,6 +114,12 @@ def print_metrics(results: list[EvaluationResult]) -> None:
     for rule_name, count in metrics["rule_hits"].items():
         print(f"- {rule_name}: {count}")
 
+    print()
+    print("Category Hits:")
+
+    for category_name, count in metrics["category_hits"].items():
+        print(f"- {category_name}: {count}")
+
 
 def main() -> None:
     cases = [
