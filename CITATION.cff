@@ -1,0 +1,10 @@
+﻿cff-version: 1.2.0
+message: "If you use or reference this repository, please cite it as below."
+title: "UAA Execution Prevention Lab"
+authors:
+  - family-names: "Harris"
+    given-names: "Ashley S."
+version: "0.1"
+date-released: "2026-06-20"
+repository-code: "https://github.com/ORYNTH-systems/uaa-execution-prevention-lab"
+abstract: "A reference implementation and evidence-generation environment demonstrating execution-prevention behavior under the Unified Agency Architecture."
