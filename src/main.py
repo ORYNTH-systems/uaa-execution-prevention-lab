@@ -28,6 +28,16 @@ CASE_PATHS = [
     "cases/EP-008_RESOURCE_CONSTRAINT_VIOLATION.json",
     "cases/EP-009_POLICY_CHANGE_BEFORE_EXECUTION.json",
     "cases/EP-010_MULTI_ACTOR_AUTHORITY_CONFLICT.json",
+    "cases/category-a-state-integrity/EP-011_VENDOR_SUSPENSION.json",
+    "cases/category-a-state-integrity/EP-012_VENDOR_BANKRUPTCY.json",
+    "cases/category-a-state-integrity/EP-013_CONTRACT_TERMINATION.json",
+    "cases/category-a-state-integrity/EP-014_ASSET_OWNERSHIP_CHANGE.json",
+    "cases/category-a-state-integrity/EP-015_CUSTOMER_STATUS_REVOKED.json",
+    "cases/category-a-state-integrity/EP-016_ACCOUNT_CLOSURE.json",
+    "cases/category-a-state-integrity/EP-017_LICENSE_REVOCATION.json",
+    "cases/category-a-state-integrity/EP-018_CERTIFICATION_EXPIRY.json",
+    "cases/category-a-state-integrity/EP-019_REGISTRY_STATE_CHANGE.json",
+    "cases/category-a-state-integrity/EP-020_ELIGIBILITY_WITHDRAWAL.json",
 ]
 
 
@@ -124,6 +134,10 @@ def print_result(case: ExecutionCase, result: EvaluationResult) -> None:
     print(f"Case: {case.case_id} - {case.title}")
     print(f"Authorization Valid: {result.authorization_valid}")
     print(f"Reconciliation Required: {result.reconciliation_required}")
+
+    if case.initial_vendor_status:
+        print(f"Initial Vendor Status: {case.initial_vendor_status}")
+        print(f"Current Vendor Status: {case.current_vendor_status}")
 
     if case.authorized_intent:
         print(f"Authorized Intent: {case.authorized_intent}")

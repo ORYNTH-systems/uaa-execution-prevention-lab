@@ -1,0 +1,12 @@
+{
+  "case_id": "EP-018",
+  "title": "Certification Expiry Before Execution",
+  "authorization_valid": true,
+  "reconciliation_required": true,
+  "admissibility": false,
+  "execution_result": "DECLINED",
+  "failure_prevented": true,
+  "violations": [
+    "vendor_state_changed"
+  ]
+}
