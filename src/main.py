@@ -99,6 +99,7 @@ def main() -> None:
         "cases/EP-002_AGENT_ACTION_DRIFT.json",
         "cases/EP-003_HEALTHCARE_AUTHORIZATION_EXPIRY.json",
         "cases/EP-004_FINANCIAL_SETTLEMENT_STATE_CHANGE.json",
+        "cases/EP-005_COMPOUND_FAILURE.json",
     ]
 
     for index, case_path in enumerate(cases):
@@ -112,3 +113,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+

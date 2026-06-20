@@ -1,0 +1,44 @@
+{
+  "case_id": "EP-005",
+  "title": "Compound Admissibility Failure Before Execution",
+
+  "doctrine_reference": [
+    "UAA-D-002",
+    "UAA-D-003",
+    "UAA-D-004",
+    "UAA-D-005",
+    "UAA-D-008"
+  ],
+
+  "initial_state": {
+    "authorization": "VALID",
+    "authorization_expiration": "2026-06-15",
+    "authorized_intent": "Review settlement exception report",
+    "counterparty_status": "APPROVED"
+  },
+
+  "state_change": {
+    "current_date": "2026-06-20",
+    "authorization_status": "EXPIRED",
+    "current_agent_action": "Release settlement payment",
+    "counterparty_status": "HIGH_RISK",
+    "risk_flag": true
+  },
+
+  "execution_attempt": {
+    "requested": true
+  },
+
+  "expected_evaluation": {
+    "reconciliation_required": true,
+    "violations": [
+      "intent_drift_detected",
+      "authorization_expired",
+      "counterparty_risk_state_changed"
+    ],
+    "admissibility": false,
+    "execution_result": "DECLINED"
+  },
+
+  "assertion": "Execution must be declined when multiple admissibility conditions fail simultaneously."
+}
