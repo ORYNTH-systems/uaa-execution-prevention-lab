@@ -1,0 +1,30 @@
+{
+    "case_id": "EP-009",
+    "title": "Policy Change Before Execution",
+
+    "initial_state": {
+        "authorization": "VALID",
+
+        "policy_version": "POLICY-V1",
+
+        "authorized_intent": "Approve external data export"
+    },
+
+    "state_change": {
+        "policy_version": "POLICY-V2",
+
+        "policy_change_detected": true
+    },
+
+    "execution_attempt": {
+        "requested": true,
+        "action": "Approve external data export"
+    },
+
+    "expected_result": {
+        "authorization_valid": true,
+        "admissibility": false,
+        "execution_result": "DECLINED",
+        "failure_prevented": true
+    }
+}
