@@ -1,0 +1,14 @@
+{
+  "case_id": "EP-012",
+  "title": "Vendor Bankruptcy Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "vendor_status": "BANKRUPT"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

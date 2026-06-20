@@ -1,0 +1,14 @@
+{
+  "case_id": "EP-019",
+  "title": "Registry State Change Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "vendor_status": "REGISTERED"
+  },
+  "state_change": {
+    "vendor_status": "DEREGISTERED"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

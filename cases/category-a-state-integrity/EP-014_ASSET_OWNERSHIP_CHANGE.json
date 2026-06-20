@@ -1,0 +1,14 @@
+{
+  "case_id": "EP-014",
+  "title": "Asset Ownership Change Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "vendor_status": "OWNER_VERIFIED"
+  },
+  "state_change": {
+    "vendor_status": "OWNERSHIP_CHANGED"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

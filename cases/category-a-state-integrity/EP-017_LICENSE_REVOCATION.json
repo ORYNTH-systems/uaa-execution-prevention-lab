@@ -1,0 +1,14 @@
+{
+  "case_id": "EP-017",
+  "title": "License Revocation Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "vendor_status": "LICENSE_VALID"
+  },
+  "state_change": {
+    "vendor_status": "LICENSE_REVOKED"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

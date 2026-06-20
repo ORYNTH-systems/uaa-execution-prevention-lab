@@ -1,0 +1,14 @@
+{
+  "case_id": "EP-018",
+  "title": "Certification Expiry Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "vendor_status": "CERTIFIED"
+  },
+  "state_change": {
+    "vendor_status": "CERTIFICATION_EXPIRED"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

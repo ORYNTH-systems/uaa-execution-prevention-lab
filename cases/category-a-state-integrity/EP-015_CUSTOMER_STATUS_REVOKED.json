@@ -1,0 +1,14 @@
+{
+  "case_id": "EP-015",
+  "title": "Customer Status Revoked Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "vendor_status": "CUSTOMER_APPROVED"
+  },
+  "state_change": {
+    "vendor_status": "CUSTOMER_REVOKED"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

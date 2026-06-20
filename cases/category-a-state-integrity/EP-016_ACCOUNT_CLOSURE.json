@@ -1,0 +1,14 @@
+{
+  "case_id": "EP-016",
+  "title": "Account Closure Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "vendor_status": "ACCOUNT_ACTIVE"
+  },
+  "state_change": {
+    "vendor_status": "ACCOUNT_CLOSED"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

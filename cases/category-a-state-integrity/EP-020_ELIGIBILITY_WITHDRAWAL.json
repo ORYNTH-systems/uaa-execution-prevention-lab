@@ -1,0 +1,14 @@
+{
+  "case_id": "EP-020",
+  "title": "Eligibility Withdrawal Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "vendor_status": "ELIGIBLE"
+  },
+  "state_change": {
+    "vendor_status": "INELIGIBLE"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "case_id": "EP-013",
+  "title": "Contract Termination Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "vendor_status": "CONTRACT_ACTIVE"
+  },
+  "state_change": {
+    "vendor_status": "CONTRACT_TERMINATED"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}
