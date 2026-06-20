@@ -48,3 +48,20 @@ def authorization_expired(case: ExecutionCase) -> bool:
         return False
 
     return case.current_date > case.authorization_expiration
+
+
+def counterparty_risk_state_changed(case: ExecutionCase) -> bool:
+    """
+    EP-004:
+    Detect whether counterparty risk state changed before settlement execution.
+    """
+    if case.risk_flag:
+        return True
+
+    if not case.initial_counterparty_status:
+        return False
+
+    return (
+        case.initial_counterparty_status
+        != case.current_counterparty_status
+    )

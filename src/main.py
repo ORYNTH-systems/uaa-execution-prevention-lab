@@ -5,6 +5,7 @@ from reconciliation import (
     reconciliation_required,
     intent_drift_detected,
     authorization_expired,
+    counterparty_risk_state_changed,
 )
 from admissibility import evaluate_admissibility
 
@@ -29,6 +30,9 @@ def load_case(path: str) -> ExecutionCase:
         authorization_expiration=initial_state.get("authorization_expiration", ""),
         current_date=state_change.get("current_date", ""),
         current_authorization_status=state_change.get("authorization_status", ""),
+        initial_counterparty_status=initial_state.get("counterparty_status", ""),
+        current_counterparty_status=state_change.get("counterparty_status", ""),
+        risk_flag=state_change.get("risk_flag", False),
     )
 
 
@@ -75,6 +79,12 @@ def print_result(case: ExecutionCase, result: EvaluationResult) -> None:
         print(f"Current Date: {case.current_date}")
         print(f"Authorization Expired: {authorization_expired(case)}")
 
+    if case.initial_counterparty_status:
+        print(f"Initial Counterparty Status: {case.initial_counterparty_status}")
+        print(f"Current Counterparty Status: {case.current_counterparty_status}")
+        print(f"Risk Flag: {case.risk_flag}")
+        print(f"Counterparty Risk State Changed: {counterparty_risk_state_changed(case)}")
+
     print(f"Admissibility: {result.admissibility}")
     print(f"Execution Result: {result.execution_result}")
     print(f"Failure Prevented: {result.failure_prevented}")
@@ -85,6 +95,7 @@ def main() -> None:
         "cases/EP-001_VENDOR_BLACKLIST.json",
         "cases/EP-002_AGENT_ACTION_DRIFT.json",
         "cases/EP-003_HEALTHCARE_AUTHORIZATION_EXPIRY.json",
+        "cases/EP-004_FINANCIAL_SETTLEMENT_STATE_CHANGE.json",
     ]
 
     for index, case_path in enumerate(cases):

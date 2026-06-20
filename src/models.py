@@ -14,6 +14,9 @@ class ExecutionCase:
     authorization_expiration: str = ""
     current_date: str = ""
     current_authorization_status: str = ""
+    initial_counterparty_status: str = ""
+    current_counterparty_status: str = ""
+    risk_flag: bool = False
 
 
 @dataclass(frozen=True)

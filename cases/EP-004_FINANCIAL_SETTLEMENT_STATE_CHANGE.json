@@ -1,0 +1,35 @@
+{
+"case_id": "EP-004",
+"title": "Financial Settlement State Change Before Execution",
+
+"doctrine_reference": [
+"UAA-D-002",
+"UAA-D-003",
+"UAA-D-005",
+"UAA-D-008"
+],
+
+"initial_state": {
+"authorization": "VALID",
+"settlement_id": "SETTLEMENT-001",
+"counterparty_status": "APPROVED",
+"settlement_amount": 1000000
+},
+
+"state_change": {
+"counterparty_status": "HIGH_RISK",
+"risk_flag": true
+},
+
+"execution_attempt": {
+"requested": true
+},
+
+"expected_evaluation": {
+"reconciliation_required": true,
+"admissibility": false,
+"execution_result": "DECLINED"
+},
+
+"assertion": "Settlement authorization does not imply settlement admissibility when counterparty risk changes before execution."
+}

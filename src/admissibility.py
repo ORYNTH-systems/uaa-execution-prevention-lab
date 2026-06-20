@@ -3,6 +3,7 @@ from reconciliation import (
     vendor_state_changed,
     intent_drift_detected,
     authorization_expired,
+    counterparty_risk_state_changed,
 )
 
 
@@ -22,6 +23,9 @@ def evaluate_admissibility(case: ExecutionCase) -> bool:
         return False
 
     if authorization_expired(case):
+        return False
+
+    if counterparty_risk_state_changed(case):
         return False
 
     return True
