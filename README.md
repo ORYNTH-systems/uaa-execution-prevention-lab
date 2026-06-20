@@ -29,10 +29,105 @@ For every execution request:
 
 ## Observed Outcome Pattern
 
-Across all cases:
+## Current Results
+
+| Metric                           | Value |
+| -------------------------------- | ----- |
+| Total Demonstrations             | 20    |
+| Total Prevented Failures         | 20    |
+| Observed Unauthorized Executions | 0     |
+| Prevention Rate                  | 100%  |
+
+---
+
+## Observed Outcome Pattern
+
+Across all demonstrations:
 
 ```text
 Authorization Valid: True
 Admissibility: False
 Execution Result: DECLINED
 Failure Prevented: True
+```
+
+Execution decisions are determined by current admissibility state rather than historical authorization state.
+
+---
+
+## Evidence Coverage
+
+### Category A — State Integrity
+
+| Case Range    | Coverage                          |
+| ------------- | --------------------------------- |
+| EP-001–EP-020 | State-change execution prevention |
+
+Covered Conditions:
+
+* Vendor Suspension
+* Vendor Bankruptcy
+* Contract Termination
+* Asset Ownership Change
+* Customer Status Revocation
+* Account Closure
+* License Revocation
+* Certification Expiry
+* Registry State Change
+* Eligibility Withdrawal
+
+---
+
+## Evidence Chain
+
+Doctrine
+
+↓
+
+Rule Mapping
+
+↓
+
+Reference Implementation
+
+↓
+
+Execution Prevention Cases
+
+↓
+
+Structured JSON Evidence
+
+↓
+
+Replayable Demonstrations
+
+---
+
+## Repository Structure
+
+```text
+README.md
+
+cases/
+doctrine/
+docs/
+release/
+reports/
+spec/
+src/
+```
+
+---
+
+## Release Status
+
+Version: v0.1.1
+
+Status: Public Release
+
+Executable Corpus: 20 Cases
+
+Structured Evidence Output: Enabled
+
+Replay Support: Enabled
