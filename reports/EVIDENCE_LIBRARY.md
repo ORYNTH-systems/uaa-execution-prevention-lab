@@ -16,66 +16,103 @@ Execution requires real-time admissibility reconstruction from current system st
 
 ---
 
-## Summary Metrics
+Summary Metrics
+Metric	Value
+Total Demonstrations	30
+Total Prevented Failures	30
+Unauthorized Executions	0
+Prevention Rate	100%
+Rule Activation Summary
+vendor_state_changed: 11
+intent_drift_detected: 13
+authorization_expired: 2
+counterparty_risk_state_changed: 2
+delegation_revoked: 1
+identity_continuity_failed: 2
+resource_constraint_violated: 1
+policy_change_detected: 1
+Category Distribution
+State: 11
+Intent: 13
+Temporal: 2
+Risk: 2
+Authority: 1
+Identity: 2
+Resource: 1
+Policy: 1
+Evidence Coverage
+State Integrity (11 Cases)
 
-| Metric                   | Value |
-|--------------------------|------:|
-| Total Demonstrations     | 20   |
-| Total Prevented Failures | 20    |
-| Unauthorized Executions  | 0     |
-| Prevention Rate          | 100%  |
+EP-001 Vendor Blacklist
 
----
+EP-011 Vendor Suspension
 
-## Rule Activation Summary
+EP-012 Vendor Bankruptcy
 
-- vendor_state_changed: 1
-- intent_drift_detected: 3
-- authorization_expired: 2
-- counterparty_risk_state_changed: 2
-- delegation_revoked: 1
-- identity_continuity_failed: 2
-- resource_constraint_violated: 1
-- policy_change_detected: 1
+EP-013 Contract Termination
 
----
+EP-014 Asset Ownership Change
 
-## Category Distribution
+EP-015 Customer Status Revoked
 
-- State: 1
-- Intent: 3
-- Temporal: 2
-- Risk: 2
-- Authority: 1
-- Identity: 2
-- Resource: 1
-- Policy: 1
+EP-016 Account Closure
 
----
+EP-017 License Revocation
 
-## Evidence Cases
+EP-018 Certification Expiry
 
-| Case   | Failure Class                  | Domain                       | Result    |
-|--------|--------------------------------|------------------------------|----------|
-| EP-001 | State Drift                    | Vendor / Procurement         | Prevented |
-| EP-002 | Intent Drift                  | Agentic System               | Prevented |
-| EP-003 | Authorization Expiry          | Healthcare                   | Prevented |
-| EP-004 | Risk-State Change             | Financial Settlement         | Prevented |
-| EP-005 | Compound Failure              | Financial Systems            | Prevented |
-| EP-006 | Delegation Revocation         | Authority Systems            | Prevented |
-| EP-007 | Identity Continuity Failure   | Access Control               | Prevented |
-| EP-008 | Resource Constraint Violation | Compute / Analytics          | Prevented |
-| EP-009 | Policy Change                 | Data Governance              | Prevented |
-| EP-010 | Multi-Actor Conflict          | Payment Authorization        | Prevented |
+EP-019 Registry State Change
 
----
+EP-020 Eligibility Withdrawal
 
-## Result Pattern (Deterministic)
+Intent Integrity (11 Cases)
 
-All executions followed the same invariant outcome:
+EP-002 Agent Action Drift
 
-```text
-Authorization Valid: True
-Admissibility: False
-Execution Result: DECLINED
-Failure Prevented: True
+EP-021 Action Substitution
+
+EP-022 Scope Expansion
+
+EP-023 Objective Substitution
+
+EP-024 Task Escalation
+
+EP-025 Permission Repurposing
+
+EP-026 Intent Amplification
+
+EP-027 Goal Redirection
+
+EP-028 Multi-Step Intent Drift
+
+EP-029 Side Effect Introduction
+
+EP-030 Composite Intent Drift
+
+Temporal Integrity
+
+EP-003 Healthcare Authorization Expiry
+
+Risk Integrity
+
+EP-004 Financial Settlement State Change
+
+EP-005 Compound Admissibility Failure
+
+Authority Integrity
+
+EP-006 Delegation Revocation
+
+Identity Integrity
+
+EP-007 Identity Continuity Failure
+
+EP-010 Multi-Actor Authority Conflict
+
+Resource Integrity
+
+EP-008 Resource Constraint Violation
+
+Policy Integrity
+
+EP-009 Policy Change Before Execution
