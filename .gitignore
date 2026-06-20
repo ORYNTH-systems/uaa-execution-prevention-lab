@@ -1,2 +1,10 @@
-__pycache__/
+**pycache**/
 *.pyc
+*.pyo
+*.pyd
+.Python
+.env
+.venv/
+venv/
+.DS_Store
+Thumbs.db
