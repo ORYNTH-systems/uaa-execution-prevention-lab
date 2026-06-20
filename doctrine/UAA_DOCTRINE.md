@@ -1,74 +1,71 @@
-\# Unified Agency Architecture Doctrine
+# Unified Agency Architecture Doctrine Registry
 
+## UAA-D-001 — Semantic State Separation
 
+Capability, authority, admissibility, and execution are distinct states. No state may be treated as equivalent to another.
 
-\## D-001 Capability Does Not Imply Authority
+**Operational consequence:** A system may not infer execution permission from capability, identity, role, credential, or prior authorization.
 
+---
 
+## UAA-D-002 — Authority Non-Implication
 
-The ability to perform an action does not constitute permission to perform that action.
+Authorization does not imply execution admissibility.
 
+**Operational consequence:** An authorized action must still pass execution-time admissibility evaluation.
 
+---
 
-\---
+## UAA-D-003 — Admissibility Reconstruction
 
+Execution admissibility is reconstructed from current reality state.
 
+**Operational consequence:** Execution eligibility is not stored as a durable permission.
 
-\## D-002 Authority Does Not Imply Admissibility
+---
 
+## UAA-D-004 — Temporal Non-Inheritance
 
+A prior valid state does not automatically persist into a future execution state.
 
-Authorization alone is insufficient to establish execution eligibility.
+**Operational consequence:** Time passage, state change, revocation, expiry, drift, or dependency failure may invalidate execution.
 
+---
 
+## UAA-D-005 — Reconciliation Precondition
 
-\---
+Execution requires reconciliation between authorized intent and current reality state.
 
+**Operational consequence:** Execution cannot proceed directly from authorization.
 
+---
 
-\## D-003 Prior Admissibility Does Not Imply Future Admissibility
+## UAA-D-006 — Boundary Contemporaneity
 
+Execution boundaries must be evaluated at the time of attempted execution.
 
+**Operational consequence:** Stale boundaries cannot authorize current execution.
 
-An execution that was admissible at one point in time may become inadmissible due to changes in reality state.
+---
 
+## UAA-D-007 — Execution Non-Effectuation
 
+A system may determine that execution is inadmissible without producing execution.
 
-\---
+**Operational consequence:** Declined execution is a valid system outcome.
 
+---
 
+## UAA-D-008 — Fail-Closed Execution
 
-\## D-004 Execution Must Be Reconstructed From Current Reality State
+If admissibility cannot be established, execution must be declined.
 
+**Operational consequence:** Uncertainty does not authorize execution.
 
+---
 
-Execution eligibility must be determined through evaluation of current conditions at execution time.
+## Core Doctrine
 
+Execution authority is not inherited.
 
-
-\---
-
-
-
-\## D-005 Execution Eligibility Is Distinct From Authorization
-
-
-
-Authorization state and execution-admissibility state are separate and independently evaluated.
-
-
-
-\---
-
-
-
-\## Core Principle
-
-
-
-Execution authority is not stored.
-
-
-
-Execution authority is reconstructed.
-
+Execution authority is reconstructed from current admissibility conditions.
