@@ -38,6 +38,16 @@ CASE_PATHS = [
     "cases/category-a-state-integrity/EP-018_CERTIFICATION_EXPIRY.json",
     "cases/category-a-state-integrity/EP-019_REGISTRY_STATE_CHANGE.json",
     "cases/category-a-state-integrity/EP-020_ELIGIBILITY_WITHDRAWAL.json",
+    "cases/category-b-intent-integrity/EP-021_ACTION_SUBSTITUTION.json",
+    "cases/category-b-intent-integrity/EP-022_SCOPE_EXPANSION.json",
+    "cases/category-b-intent-integrity/EP-023_OBJECTIVE_SUBSTITUTION.json",
+    "cases/category-b-intent-integrity/EP-024_TASK_ESCALATION.json",
+    "cases/category-b-intent-integrity/EP-025_PERMISSION_REPURPOSING.json",
+    "cases/category-b-intent-integrity/EP-026_INTENT_AMPLIFICATION.json",
+    "cases/category-b-intent-integrity/EP-027_GOAL_REDIRECTION.json",
+    "cases/category-b-intent-integrity/EP-028_MULTI_STEP_DRIFT.json",
+    "cases/category-b-intent-integrity/EP-029_SIDE_EFFECT_INTRODUCTION.json",
+    "cases/category-b-intent-integrity/EP-030_COMPOSITE_INTENT_DRIFT.json",
 ]
 
 

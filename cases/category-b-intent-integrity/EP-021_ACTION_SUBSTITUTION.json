@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-021",
+  "title": "Authorized Action Substituted Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "authorized_intent": "Generate monthly compliance report",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_agent_action": "Delete compliance report archive"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

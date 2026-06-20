@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-025",
+  "title": "Permission Repurposing Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "authorized_intent": "Export customer contact list",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_agent_action": "Export customer contact list and modify customer records"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

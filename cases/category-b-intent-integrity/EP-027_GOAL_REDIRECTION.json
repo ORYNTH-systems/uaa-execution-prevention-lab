@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-027",
+  "title": "Goal Redirection Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "authorized_intent": "Analyze sales performance trends",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_agent_action": "Modify sales commission payouts"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

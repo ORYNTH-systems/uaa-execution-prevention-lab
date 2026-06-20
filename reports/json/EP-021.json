@@ -1,0 +1,12 @@
+{
+  "case_id": "EP-021",
+  "title": "Authorized Action Substituted Before Execution",
+  "authorization_valid": true,
+  "reconciliation_required": true,
+  "admissibility": false,
+  "execution_result": "DECLINED",
+  "failure_prevented": true,
+  "violations": [
+    "intent_drift_detected"
+  ]
+}
