@@ -1,5 +1,8 @@
 from models import ExecutionCase
-from reconciliation import vendor_state_changed
+from reconciliation import (
+    vendor_state_changed,
+    intent_drift_detected,
+)
 
 
 def evaluate_admissibility(case: ExecutionCase) -> bool:
@@ -12,6 +15,9 @@ def evaluate_admissibility(case: ExecutionCase) -> bool:
     """
 
     if vendor_state_changed(case):
+        return False
+
+    if intent_drift_detected(case):
         return False
 
     return True

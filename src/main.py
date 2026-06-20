@@ -1,7 +1,10 @@
 import json
 
 from models import ExecutionCase, EvaluationResult
-from reconciliation import reconciliation_required
+from reconciliation import (
+    reconciliation_required,
+    intent_drift_detected,
+)
 from admissibility import evaluate_admissibility
 
 
@@ -9,13 +12,19 @@ def load_case(path: str) -> ExecutionCase:
     with open(path, "r", encoding="utf-8") as file:
         data = json.load(file)
 
+    initial_state = data.get("initial_state", {})
+    state_change = data.get("state_change", {})
+    execution_attempt = data.get("execution_attempt", {})
+
     return ExecutionCase(
         case_id=data["case_id"],
         title=data["title"],
-        authorization=data["initial_state"]["authorization"],
-        initial_vendor_status=data["initial_state"]["vendor_status"],
-        current_vendor_status=data["state_change"]["vendor_status"],
-        execution_requested=data["execution_attempt"]["requested"],
+        authorization=initial_state.get("authorization", ""),
+        initial_vendor_status=initial_state.get("vendor_status", ""),
+        current_vendor_status=state_change.get("vendor_status", ""),
+        execution_requested=execution_attempt.get("requested", False),
+        authorized_intent=initial_state.get("authorized_intent", ""),
+        current_action=state_change.get("current_agent_action", ""),
     )
 
 
@@ -47,16 +56,34 @@ def evaluate_case(case: ExecutionCase) -> EvaluationResult:
     )
 
 
-def main() -> None:
-    case = load_case("cases/EP-001_VENDOR_BLACKLIST.json")
-    result = evaluate_case(case)
-
+def print_result(case: ExecutionCase, result: EvaluationResult) -> None:
     print(f"Case: {case.case_id} - {case.title}")
     print(f"Authorization Valid: {result.authorization_valid}")
     print(f"Reconciliation Required: {result.reconciliation_required}")
+
+    if case.authorized_intent:
+        print(f"Authorized Intent: {case.authorized_intent}")
+        print(f"Current Action: {case.current_action}")
+        print(f"Intent Drift Detected: {intent_drift_detected(case)}")
+
     print(f"Admissibility: {result.admissibility}")
     print(f"Execution Result: {result.execution_result}")
     print(f"Failure Prevented: {result.failure_prevented}")
+
+
+def main() -> None:
+    cases = [
+        "cases/EP-001_VENDOR_BLACKLIST.json",
+        "cases/EP-002_AGENT_ACTION_DRIFT.json",
+    ]
+
+    for index, case_path in enumerate(cases):
+        case = load_case(case_path)
+        result = evaluate_case(case)
+        print_result(case, result)
+
+        if index < len(cases) - 1:
+            print()
 
 
 if __name__ == "__main__":

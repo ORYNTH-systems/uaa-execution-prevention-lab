@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 
-
 @dataclass(frozen=True)
 class ExecutionCase:
     case_id: str
@@ -9,7 +8,8 @@ class ExecutionCase:
     initial_vendor_status: str
     current_vendor_status: str
     execution_requested: bool
-
+    authorized_intent: str = ""
+    current_action: str = ""
 
 @dataclass(frozen=True)
 class EvaluationResult:

@@ -11,6 +11,7 @@ def reconciliation_required(case: ExecutionCase) -> bool:
 
 def vendor_state_changed(case: ExecutionCase) -> bool:
     """
+    EP-001:
     Detect whether vendor state changed between
     authorization and execution.
     """
@@ -18,3 +19,15 @@ def vendor_state_changed(case: ExecutionCase) -> bool:
         case.initial_vendor_status
         != case.current_vendor_status
     )
+
+
+def intent_drift_detected(case: ExecutionCase) -> bool:
+    """
+    EP-002:
+    Detect whether the current agent action differs
+    from the originally authorized intent.
+    """
+    if not case.authorized_intent:
+        return False
+
+    return case.authorized_intent != case.current_action
