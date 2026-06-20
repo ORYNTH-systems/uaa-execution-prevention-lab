@@ -19,6 +19,8 @@ class ExecutionCase:
     risk_flag: bool = False
     initial_delegation_status: str = ""
     current_delegation_status: str = ""
+    authorized_actor: str = ""
+    current_actor: str = ""
 
 
 @dataclass(frozen=True)

@@ -5,6 +5,7 @@ from reconciliation import (
     authorization_expired,
     counterparty_risk_state_changed,
     delegation_revoked,
+    identity_continuity_failed,
 )
 
 ADMISSIBILITY_RULES = [
@@ -13,6 +14,7 @@ ADMISSIBILITY_RULES = [
     ("authorization_expired", authorization_expired),
     ("counterparty_risk_state_changed", counterparty_risk_state_changed),
     ("delegation_revoked", delegation_revoked),
+    ("identity_continuity_failed", identity_continuity_failed),
 ]
 
 

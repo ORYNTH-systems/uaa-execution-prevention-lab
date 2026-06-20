@@ -79,3 +79,18 @@ def delegation_revoked(case: ExecutionCase) -> bool:
         return False
 
     return case.current_delegation_status == "REVOKED"
+
+
+def identity_continuity_failed(case: ExecutionCase) -> bool:
+    """
+    EP-007:
+    Detect whether execution is being attempted by a
+    different actor than the actor originally authorized.
+    """
+    if not case.authorized_actor:
+        return False
+
+    if not case.current_actor:
+        return False
+
+    return case.authorized_actor != case.current_actor

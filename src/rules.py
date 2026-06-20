@@ -4,4 +4,5 @@ RULE_CATEGORIES = {
     "authorization_expired": "Temporal",
     "counterparty_risk_state_changed": "Risk",
     "delegation_revoked": "Authority",
+    "identity_continuity_failed": "Identity",
 }

@@ -7,6 +7,7 @@ from reconciliation import (
     authorization_expired,
     counterparty_risk_state_changed,
     delegation_revoked,
+    identity_continuity_failed,
 )
 from admissibility import evaluate_admissibility, collect_violations
 from metrics import generate_metrics
@@ -37,6 +38,8 @@ def load_case(path: str) -> ExecutionCase:
         risk_flag=state_change.get("risk_flag", False),
         initial_delegation_status=initial_state.get("delegation_status", ""),
         current_delegation_status=state_change.get("delegation_status", ""),
+        authorized_actor=initial_state.get("authorized_actor", ""),
+        current_actor=state_change.get("current_actor", ""),
     )
 
 
@@ -96,6 +99,11 @@ def print_result(case: ExecutionCase, result: EvaluationResult) -> None:
         print(f"Current Delegation Status: {case.current_delegation_status}")
         print(f"Delegation Revoked: {delegation_revoked(case)}")
 
+    if case.authorized_actor:
+        print(f"Authorized Actor: {case.authorized_actor}")
+        print(f"Current Actor: {case.current_actor}")
+        print(f"Identity Continuity Failed: {identity_continuity_failed(case)}")
+
     print(f"Violations: {result.violations}")
     print(f"Admissibility: {result.admissibility}")
     print(f"Execution Result: {result.execution_result}")
@@ -137,6 +145,7 @@ def main() -> None:
         "cases/EP-004_FINANCIAL_SETTLEMENT_STATE_CHANGE.json",
         "cases/EP-005_COMPOUND_FAILURE.json",
         "cases/EP-006_DELEGATION_REVOCATION.json",
+        "cases/EP-007_IDENTITY_CONTINUITY_FAILURE.json",
     ]
 
     results = []
