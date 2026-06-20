@@ -1,0 +1,12 @@
+{
+  "case_id": "EP-009",
+  "title": "Policy Change Before Execution",
+  "authorization_valid": true,
+  "reconciliation_required": true,
+  "admissibility": false,
+  "execution_result": "DECLINED",
+  "failure_prevented": true,
+  "violations": [
+    "policy_change_detected"
+  ]
+}

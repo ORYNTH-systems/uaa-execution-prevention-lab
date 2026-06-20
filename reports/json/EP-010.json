@@ -1,0 +1,13 @@
+{
+  "case_id": "EP-010",
+  "title": "Multi-Actor Authority Conflict",
+  "authorization_valid": true,
+  "reconciliation_required": true,
+  "admissibility": false,
+  "execution_result": "DECLINED",
+  "failure_prevented": true,
+  "violations": [
+    "intent_drift_detected",
+    "identity_continuity_failed"
+  ]
+}

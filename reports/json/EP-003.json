@@ -1,0 +1,12 @@
+{
+  "case_id": "EP-003",
+  "title": "Healthcare Authorization Expiry Before Procedure",
+  "authorization_valid": true,
+  "reconciliation_required": true,
+  "admissibility": false,
+  "execution_result": "DECLINED",
+  "failure_prevented": true,
+  "violations": [
+    "authorization_expired"
+  ]
+}

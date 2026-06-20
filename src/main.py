@@ -195,7 +195,7 @@ def print_metrics(results: list[EvaluationResult]) -> None:
 
 
 def selected_case_paths(case_id: str | None) -> list[str]:
-    if case_id is None or case_id == "all":
+    if case_id is None or case_id.lower() == "all":
         return CASE_PATHS
 
     normalized_case_id = case_id.upper()
@@ -209,10 +209,18 @@ def selected_case_paths(case_id: str | None) -> list[str]:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--case", default="all")
+    parser.add_argument("--case", default=None)
+    parser.add_argument("--all", action="store_true")
     args = parser.parse_args()
 
-    cases = selected_case_paths(args.case)
+    if args.all:
+        case_selector = "all"
+    elif args.case:
+        case_selector = args.case
+    else:
+        case_selector = "all"
+
+    cases = selected_case_paths(case_selector)
     results = []
 
     for index, case_path in enumerate(cases):
