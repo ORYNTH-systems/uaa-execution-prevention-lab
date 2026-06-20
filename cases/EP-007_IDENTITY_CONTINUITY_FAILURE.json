@@ -1,0 +1,26 @@
+{
+  "case_id": "EP-007",
+  "title": "Identity Continuity Failure Before Execution",
+
+  "initial_state": {
+    "authorization": "VALID",
+    "authorized_actor": "ACTOR-A",
+    "authorized_intent": "Approve controlled system access"
+  },
+
+  "state_change": {
+    "current_actor": "ACTOR-B"
+  },
+
+  "execution_attempt": {
+    "requested": true,
+    "action": "Approve controlled system access"
+  },
+
+  "expected_result": {
+    "authorization_valid": true,
+    "admissibility": false,
+    "execution_result": "DECLINED",
+    "failure_prevented": true
+  }
+}
