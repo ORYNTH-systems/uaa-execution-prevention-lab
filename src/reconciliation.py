@@ -94,3 +94,18 @@ def identity_continuity_failed(case: ExecutionCase) -> bool:
         return False
 
     return case.authorized_actor != case.current_actor
+
+
+def resource_constraint_violated(case: ExecutionCase) -> bool:
+    """
+    EP-008:
+    Detect whether required execution resources exceed
+    the authorized or available resource limit.
+    """
+    if not case.resource_limit:
+        return False
+
+    if not case.resource_required:
+        return False
+
+    return case.resource_required > case.resource_limit

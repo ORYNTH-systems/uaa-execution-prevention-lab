@@ -5,4 +5,5 @@ RULE_CATEGORIES = {
     "counterparty_risk_state_changed": "Risk",
     "delegation_revoked": "Authority",
     "identity_continuity_failed": "Identity",
+    "resource_constraint_violated": "Resource",
 }

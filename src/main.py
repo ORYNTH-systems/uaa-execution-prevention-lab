@@ -8,6 +8,7 @@ from reconciliation import (
     counterparty_risk_state_changed,
     delegation_revoked,
     identity_continuity_failed,
+    resource_constraint_violated,
 )
 from admissibility import evaluate_admissibility, collect_violations
 from metrics import generate_metrics
@@ -40,6 +41,8 @@ def load_case(path: str) -> ExecutionCase:
         current_delegation_status=state_change.get("delegation_status", ""),
         authorized_actor=initial_state.get("authorized_actor", ""),
         current_actor=state_change.get("current_actor", ""),
+        resource_limit=initial_state.get("resource_limit", 0),
+        resource_required=state_change.get("resource_required", 0),
     )
 
 
@@ -104,6 +107,11 @@ def print_result(case: ExecutionCase, result: EvaluationResult) -> None:
         print(f"Current Actor: {case.current_actor}")
         print(f"Identity Continuity Failed: {identity_continuity_failed(case)}")
 
+    if case.resource_limit:
+        print(f"Resource Limit: {case.resource_limit}")
+        print(f"Resource Required: {case.resource_required}")
+        print(f"Resource Constraint Violated: {resource_constraint_violated(case)}")
+
     print(f"Violations: {result.violations}")
     print(f"Admissibility: {result.admissibility}")
     print(f"Execution Result: {result.execution_result}")
@@ -146,6 +154,7 @@ def main() -> None:
         "cases/EP-005_COMPOUND_FAILURE.json",
         "cases/EP-006_DELEGATION_REVOCATION.json",
         "cases/EP-007_IDENTITY_CONTINUITY_FAILURE.json",
+        "cases/EP-008_RESOURCE_CONSTRAINT_VIOLATION.json",
     ]
 
     results = []

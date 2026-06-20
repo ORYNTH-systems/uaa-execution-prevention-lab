@@ -6,6 +6,7 @@ from reconciliation import (
     counterparty_risk_state_changed,
     delegation_revoked,
     identity_continuity_failed,
+    resource_constraint_violated,
 )
 
 ADMISSIBILITY_RULES = [
@@ -15,6 +16,7 @@ ADMISSIBILITY_RULES = [
     ("counterparty_risk_state_changed", counterparty_risk_state_changed),
     ("delegation_revoked", delegation_revoked),
     ("identity_continuity_failed", identity_continuity_failed),
+    ("resource_constraint_violated", resource_constraint_violated),
 ]
 
 

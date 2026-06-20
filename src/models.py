@@ -9,18 +9,26 @@ class ExecutionCase:
     initial_vendor_status: str
     current_vendor_status: str
     execution_requested: bool
+
     authorized_intent: str = ""
     current_action: str = ""
+
     authorization_expiration: str = ""
     current_date: str = ""
     current_authorization_status: str = ""
+
     initial_counterparty_status: str = ""
     current_counterparty_status: str = ""
     risk_flag: bool = False
+
     initial_delegation_status: str = ""
     current_delegation_status: str = ""
+
     authorized_actor: str = ""
     current_actor: str = ""
+
+    resource_limit: int = 0
+    resource_required: int = 0
 
 
 @dataclass(frozen=True)
