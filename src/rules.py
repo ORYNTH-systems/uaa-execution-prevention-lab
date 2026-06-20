@@ -6,4 +6,5 @@ RULE_CATEGORIES = {
     "delegation_revoked": "Authority",
     "identity_continuity_failed": "Identity",
     "resource_constraint_violated": "Resource",
+    "policy_change_detected": "Policy",
 }

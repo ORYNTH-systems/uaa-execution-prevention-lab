@@ -9,6 +9,7 @@ from reconciliation import (
     delegation_revoked,
     identity_continuity_failed,
     resource_constraint_violated,
+    policy_change_detected,
 )
 from admissibility import evaluate_admissibility, collect_violations
 from metrics import generate_metrics
@@ -43,6 +44,8 @@ def load_case(path: str) -> ExecutionCase:
         current_actor=state_change.get("current_actor", ""),
         resource_limit=initial_state.get("resource_limit", 0),
         resource_required=state_change.get("resource_required", 0),
+        policy_version=initial_state.get("policy_version", ""),
+        current_policy_version=state_change.get("policy_version", ""),
     )
 
 
@@ -112,6 +115,11 @@ def print_result(case: ExecutionCase, result: EvaluationResult) -> None:
         print(f"Resource Required: {case.resource_required}")
         print(f"Resource Constraint Violated: {resource_constraint_violated(case)}")
 
+    if case.policy_version:
+        print(f"Initial Policy Version: {case.policy_version}")
+        print(f"Current Policy Version: {case.current_policy_version}")
+        print(f"Policy Change Detected: {policy_change_detected(case)}")
+
     print(f"Violations: {result.violations}")
     print(f"Admissibility: {result.admissibility}")
     print(f"Execution Result: {result.execution_result}")
@@ -155,6 +163,7 @@ def main() -> None:
         "cases/EP-006_DELEGATION_REVOCATION.json",
         "cases/EP-007_IDENTITY_CONTINUITY_FAILURE.json",
         "cases/EP-008_RESOURCE_CONSTRAINT_VIOLATION.json",
+        "cases/EP-009_POLICY_CHANGE_BEFORE_EXECUTION.json",
     ]
 
     results = []

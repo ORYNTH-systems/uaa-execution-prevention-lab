@@ -7,6 +7,7 @@ from reconciliation import (
     delegation_revoked,
     identity_continuity_failed,
     resource_constraint_violated,
+    policy_change_detected,
 )
 
 ADMISSIBILITY_RULES = [
@@ -17,6 +18,7 @@ ADMISSIBILITY_RULES = [
     ("delegation_revoked", delegation_revoked),
     ("identity_continuity_failed", identity_continuity_failed),
     ("resource_constraint_violated", resource_constraint_violated),
+    ("policy_change_detected", policy_change_detected),
 ]
 
 

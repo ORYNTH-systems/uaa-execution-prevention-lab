@@ -30,6 +30,9 @@ class ExecutionCase:
     resource_limit: int = 0
     resource_required: int = 0
 
+    policy_version: str = ""
+    current_policy_version: str = ""
+
 
 @dataclass(frozen=True)
 class EvaluationResult:
