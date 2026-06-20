@@ -33,8 +33,8 @@ For every execution request:
 
 | Metric                           | Value |
 | -------------------------------- | ----- |
-| Total Demonstrations             | 20    |
-| Total Prevented Failures         | 20    |
+| Total Demonstrations             | 30    |
+| Total Prevented Failures         | 30    |
 | Observed Unauthorized Executions | 0     |
 | Prevention Rate                  | 100%  |
 
