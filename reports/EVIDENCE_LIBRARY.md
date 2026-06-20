@@ -20,8 +20,8 @@ Execution requires real-time admissibility reconstruction from current system st
 
 | Metric                   | Value |
 |--------------------------|------:|
-| Total Demonstrations     | 10    |
-| Total Prevented Failures | 10    |
+| Total Demonstrations     | 20   |
+| Total Prevented Failures | 20    |
 | Unauthorized Executions  | 0     |
 | Prevention Rate          | 100%  |
 
