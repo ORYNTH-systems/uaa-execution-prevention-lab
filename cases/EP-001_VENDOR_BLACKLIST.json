@@ -1,0 +1,32 @@
+{
+  "case_id": "EP-001",
+  "title": "Vendor Status Revocation After Authorization",
+
+  "doctrine_reference": [
+    "UAA-D-002",
+    "UAA-D-003",
+    "UAA-D-005",
+    "UAA-D-008"
+  ],
+
+  "initial_state": {
+    "authorization": "VALID",
+    "vendor_status": "APPROVED"
+  },
+
+  "state_change": {
+    "vendor_status": "BLACKLISTED"
+  },
+
+  "execution_attempt": {
+    "requested": true
+  },
+
+  "expected_evaluation": {
+    "reconciliation_required": true,
+    "admissibility": false,
+    "execution_result": "DECLINED"
+  },
+
+  "assertion": "Authorization remains valid while execution admissibility evaluates false."
+}
