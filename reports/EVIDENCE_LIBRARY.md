@@ -10,9 +10,9 @@ Each case demonstrates that authorization alone is insufficient for execution an
 
 ## Summary Metrics
 
-Total Demonstrations: 5
+Total Demonstrations: 10
 
-Total Prevented Failures: 5
+Total Prevented Failures: 10
 
 Observed Unauthorized Executions: 0
 
@@ -24,11 +24,19 @@ Prevention Rate: 100%
 
 vendor_state_changed: 1
 
-intent_drift_detected: 2
+intent_drift_detected: 3
 
 authorization_expired: 2
 
 counterparty_risk_state_changed: 2
+
+delegation_revoked: 1
+
+identity_continuity_failed: 2
+
+resource_constraint_violated: 1
+
+policy_change_detected: 1
 
 ---
 
@@ -36,11 +44,19 @@ counterparty_risk_state_changed: 2
 
 State: 1
 
-Intent: 2
+Intent: 3
 
 Temporal: 2
 
 Risk: 2
+
+Authority: 1
+
+Identity: 2
+
+Resource: 1
+
+Policy: 1
 
 ---
 
@@ -53,6 +69,11 @@ Risk: 2
 | EP-003 | Temporal Expiry                | Healthcare Authorization     | Prevented |
 | EP-004 | Risk-State Drift               | Financial Settlement         | Prevented |
 | EP-005 | Compound Admissibility Failure | Financial Settlement         | Prevented |
+| EP-006 | Delegation Revocation          | Authority Governance         | Prevented |
+| EP-007 | Identity Continuity Failure    | Controlled System Access     | Prevented |
+| EP-008 | Resource Constraint Violation  | Analytics / Compute Control  | Prevented |
+| EP-009 | Policy Change                  | External Data Export         | Prevented |
+| EP-010 | Multi-Actor Authority Conflict | Payment Authorization        | Prevented |
 
 ---
 
@@ -61,13 +82,10 @@ Risk: 2
 Each demonstrated case produced:
 
 ```text
-Authorization Valid: TRUE
-
-Admissibility: FALSE
-
+Authorization Valid: True
+Admissibility: False
 Execution Result: DECLINED
-
-Failure Prevented: TRUE
+Failure Prevented: True
 ```
 
 ---
@@ -97,11 +115,16 @@ Covered Failure Domains:
 * Temporal Expiry
 * Risk-State Drift
 * Compound Failure Conditions
-
-Pending Expansion:
-
 * Delegation Revocation
+* Identity Continuity Failure
+* Resource Constraint Violation
 * Policy Change
-* Identity Mismatch
-* Multi-Agent Coordination Failure
-* Dependency Failure
+* Multi-Actor Authority Conflict
+
+---
+
+## Corpus Checkpoint
+
+The repository now contains a complete 10-case execution-prevention evidence corpus.
+
+Each case demonstrates fail-closed execution behavior where prior authorization exists but current execution admissibility fails.
