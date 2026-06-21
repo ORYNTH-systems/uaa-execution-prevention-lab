@@ -1,4 +1,4 @@
-# UAA Execution Prevention Lab
+﻿# UAA Execution Prevention Lab
 
 ## Overview
 
@@ -33,8 +33,8 @@ For every execution request:
 
 | Metric                           | Value |
 | -------------------------------- | ----- |
-| Total Demonstrations             | 30    |
-| Total Prevented Failures         | 30    |
+| Total Demonstrations | 100    |
+| Total Prevented Failures | 100    |
 | Observed Unauthorized Executions | 0     |
 | Prevention Rate                  | 100%  |
 
@@ -57,11 +57,11 @@ Execution decisions are determined by current admissibility state rather than hi
 
 ## Evidence Coverage
 
-### Category A — State Integrity
+### Category A â€” State Integrity
 
 | Case Range    | Coverage                          |
 | ------------- | --------------------------------- |
-| EP-001–EP-020 | State-change execution prevention |
+| EP-001â€“EP-020 | State-change execution prevention |
 
 Covered Conditions:
 
@@ -82,23 +82,23 @@ Covered Conditions:
 
 Doctrine
 
-↓
+â†“
 
 Rule Mapping
 
-↓
+â†“
 
 Reference Implementation
 
-↓
+â†“
 
 Execution Prevention Cases
 
-↓
+â†“
 
 Structured JSON Evidence
 
-↓
+â†“
 
 Replayable Demonstrations
 
@@ -126,8 +126,32 @@ Version: v0.1.1
 
 Status: Public Release
 
-Executable Corpus: 20 Cases
+Executable Corpus: 100 Cases
 
 Structured Evidence Output: Enabled
 
 Replay Support: Enabled
+
+
+---
+
+## Research Foundations
+
+See:
+
+research/RESEARCH_INDEX.md
+
+Key Publications
+
+- Unified Agency Architecture
+  DOI: 10.5281/zenodo.20090529
+
+- Execution Integrity Protocol (EIP)
+  DOI: 10.5281/zenodo.20127973
+
+- Adaptive Orchestration Management System (AOMS)
+  DOI: 10.5281/zenodo.20673754
+
+- Deterministic Execution Integrity for Autonomous Financial Infrastructure
+  DOI: 10.5281/zenodo.20349626
+
