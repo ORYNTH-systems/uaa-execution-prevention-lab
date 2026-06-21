@@ -57,11 +57,11 @@ Execution decisions are determined by current admissibility state rather than hi
 
 ## Evidence Coverage
 
-### Category A â€” State Integrity
+### Category A — State Integrity
 
 | Case Range    | Coverage                          |
 | ------------- | --------------------------------- |
-| EP-001â€“EP-020 | State-change execution prevention |
+| EP-001–EP-020 | State-change execution prevention |
 
 Covered Conditions:
 
@@ -82,23 +82,23 @@ Covered Conditions:
 
 Doctrine
 
-â†“
+↓
 
 Rule Mapping
 
-â†“
+↓
 
 Reference Implementation
 
-â†“
+↓
 
 Execution Prevention Cases
 
-â†“
+↓
 
 Structured JSON Evidence
 
-â†“
+↓
 
 Replayable Demonstrations
 
@@ -154,4 +154,5 @@ Key Publications
 
 - Deterministic Execution Integrity for Autonomous Financial Infrastructure
   DOI: 10.5281/zenodo.20349626
+
 
