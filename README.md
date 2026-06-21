@@ -156,3 +156,18 @@ Key Publications
   DOI: 10.5281/zenodo.20349626
 
 
+
+## Full Corpus Coverage
+
+| Domain | Case Range |
+|---------|---------|
+| State Integrity | EP-001–EP-020 |
+| Intent Integrity | EP-021–EP-030 |
+| Temporal Integrity | EP-031–EP-040 |
+| Risk Integrity | EP-041–EP-050 |
+| Authority Integrity | EP-051–EP-060 |
+| Identity Integrity | EP-061–EP-070 |
+| Resource Integrity | EP-071–EP-080 |
+| Policy Integrity | EP-081–EP-090 |
+| Compound Integrity | EP-091–EP-100 |
+
