@@ -7,7 +7,7 @@
     "vendor_status": "APPROVED"
   },
   "state_change": {
-    "current_policy_version": "RETENTION-V2"
+    "policy_version": "RETENTION-V2"
   },
   "execution_attempt": {
     "requested": true

@@ -88,6 +88,27 @@ CASE_PATHS = [
     "cases/category-f-identity-integrity/EP-068_ACCOUNT_TAKEOVER_SIGNAL.json",
     "cases/category-f-identity-integrity/EP-069_IDENTITY_REBINDING.json",
     "cases/category-f-identity-integrity/EP-070_MULTI_ACTOR_CONTINUITY_FAILURE.json",
+    "cases/category-g-resource-integrity/EP-071_COMPUTE_BUDGET_EXCEEDED.json",
+    "cases/category-g-resource-integrity/EP-072_MEMORY_LIMIT_VIOLATION.json",
+    "cases/category-g-resource-integrity/EP-073_STORAGE_QUOTA_EXCEEDED.json",
+    "cases/category-g-resource-integrity/EP-074_NETWORK_CAPACITY_EXCEEDED.json",
+    "cases/category-g-resource-integrity/EP-075_EXECUTION_COST_OVERFLOW.json",
+    "cases/category-g-resource-integrity/EP-076_RESOURCE_ALLOCATION_REVOKED.json",
+    "cases/category-g-resource-integrity/EP-077_CAPACITY_REDUCTION.json",
+    "cases/category-g-resource-integrity/EP-078_RUNTIME_RESOURCE_DEPLETION.json",
+    "cases/category-g-resource-integrity/EP-079_CONCURRENT_LOAD_EXCEEDED.json",
+    "cases/category-g-resource-integrity/EP-080_RESOURCE_CONTINUITY_FAILURE.json",
+    "cases/category-h-policy-integrity/EP-081_POLICY_VERSION_CHANGE.json",
+    "cases/category-h-policy-integrity/EP-082_COMPLIANCE_REQUIREMENT_UPDATE.json",
+    "cases/category-h-policy-integrity/EP-083_REGULATORY_RULE_CHANGE.json",
+    "cases/category-h-policy-integrity/EP-084_DATA_HANDLING_POLICY_CHANGE.json",
+    "cases/category-h-policy-integrity/EP-085_RETENTION_POLICY_UPDATE.json",
+    "cases/category-h-policy-integrity/EP-086_ACCESS_POLICY_MODIFICATION.json",
+    "cases/category-h-policy-integrity/EP-087_CLASSIFICATION_POLICY_CHANGE.json",
+    "cases/category-h-policy-integrity/EP-088_EXCEPTION_POLICY_REVISION.json",
+    "cases/category-h-policy-integrity/EP-089_GOVERNANCE_POLICY_UPDATE.json",
+    "cases/category-h-policy-integrity/EP-090_POLICY_CONTINUITY_FAILURE.json",
+
 ]
 
 

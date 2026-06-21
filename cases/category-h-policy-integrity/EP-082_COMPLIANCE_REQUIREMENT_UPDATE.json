@@ -7,7 +7,7 @@
     "vendor_status": "APPROVED"
   },
   "state_change": {
-    "current_policy_version": "COMPLIANCE-2026.2"
+    "policy_version": "COMPLIANCE-2026.2"
   },
   "execution_attempt": {
     "requested": true
