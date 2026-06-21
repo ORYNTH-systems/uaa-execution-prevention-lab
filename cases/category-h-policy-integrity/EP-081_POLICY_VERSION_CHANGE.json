@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-081",
+  "title": "Policy Version Change Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "policy_version": "POLICY-V1",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "policy_version": "POLICY-V2"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-083",
+  "title": "Regulatory Rule Change Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "policy_version": "REGULATION-1",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_policy_version": "REGULATION-2"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

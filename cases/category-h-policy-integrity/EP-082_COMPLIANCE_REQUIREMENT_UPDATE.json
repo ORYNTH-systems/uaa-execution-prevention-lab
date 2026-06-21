@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-082",
+  "title": "Compliance Requirement Update Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "policy_version": "COMPLIANCE-2026.1",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_policy_version": "COMPLIANCE-2026.2"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

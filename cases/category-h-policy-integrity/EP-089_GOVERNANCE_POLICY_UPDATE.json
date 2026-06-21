@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-089",
+  "title": "Governance Policy Update Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "policy_version": "GOVERNANCE-V1",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_policy_version": "GOVERNANCE-V2"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

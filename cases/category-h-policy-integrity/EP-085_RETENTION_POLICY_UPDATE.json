@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-085",
+  "title": "Retention Policy Update Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "policy_version": "RETENTION-V1",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_policy_version": "RETENTION-V2"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

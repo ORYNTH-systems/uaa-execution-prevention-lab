@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-086",
+  "title": "Access Policy Modification Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "policy_version": "ACCESS-POLICY-V1",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_policy_version": "ACCESS-POLICY-V2"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}
