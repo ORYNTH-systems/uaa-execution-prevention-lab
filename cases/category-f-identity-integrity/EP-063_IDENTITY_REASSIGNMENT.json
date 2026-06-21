@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-063",
+  "title": "Identity Reassignment Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "authorized_actor": "USER-001",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_actor": "USER-002"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

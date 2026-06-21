@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-065",
+  "title": "Role Identity Mismatch Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "authorized_actor": "FINANCE_MANAGER",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_actor": "CONTRACTOR"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

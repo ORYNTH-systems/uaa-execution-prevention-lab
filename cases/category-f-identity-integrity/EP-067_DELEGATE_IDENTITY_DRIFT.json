@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-067",
+  "title": "Delegate Identity Drift Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "authorized_actor": "DELEGATE-A",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_actor": "DELEGATE-B"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

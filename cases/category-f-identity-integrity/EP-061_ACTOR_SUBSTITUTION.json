@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-061",
+  "title": "Actor Substitution Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "authorized_actor": "ACTOR-A",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_actor": "ACTOR-B"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

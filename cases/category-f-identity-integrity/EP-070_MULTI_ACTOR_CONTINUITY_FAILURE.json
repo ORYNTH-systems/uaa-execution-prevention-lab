@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-070",
+  "title": "Multi-Actor Continuity Failure Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "authorized_actor": "PRIMARY-ACTOR",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_actor": "SECONDARY-ACTOR"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

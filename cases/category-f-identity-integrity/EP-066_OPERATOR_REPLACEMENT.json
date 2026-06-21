@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-066",
+  "title": "Operator Replacement Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "authorized_actor": "OPERATOR-A",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_actor": "OPERATOR-B"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

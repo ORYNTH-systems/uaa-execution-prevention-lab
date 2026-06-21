@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-068",
+  "title": "Account Takeover Signal Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "authorized_actor": "ACCOUNT-OWNER",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_actor": "UNRECOGNIZED-ACTOR"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

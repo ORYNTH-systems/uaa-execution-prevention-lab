@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-064",
+  "title": "Session Continuity Failure Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "authorized_actor": "SESSION-ACTOR-001",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_actor": "SESSION-ACTOR-002"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

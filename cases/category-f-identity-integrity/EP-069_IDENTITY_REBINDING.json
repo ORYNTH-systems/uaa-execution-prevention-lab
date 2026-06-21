@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-069",
+  "title": "Identity Rebinding Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "authorized_actor": "IDENTITY-A",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_actor": "IDENTITY-B"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}
