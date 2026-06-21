@@ -1,5 +1,6 @@
-import argparse
+﻿import argparse
 import json
+from pathlib import Path
 
 from models import ExecutionCase, EvaluationResult
 from admissibility import evaluate_admissibility, collect_violations
@@ -7,18 +8,7 @@ from metrics import generate_metrics
 from reconstruction.engine import ReconstructionEngine
 
 
-CASE_PATHS = [
-    "cases/EP-001_VENDOR_BLACKLIST.json",
-    "cases/EP-002_AGENT_ACTION_DRIFT.json",
-    "cases/EP-003_HEALTHCARE_AUTHORIZATION_EXPIRY.json",
-    "cases/EP-004_FINANCIAL_SETTLEMENT_STATE_CHANGE.json",
-    "cases/EP-005_COMPOUND_FAILURE.json",
-    "cases/EP-006_DELEGATION_REVOCATION.json",
-    "cases/EP-007_IDENTITY_CONTINUITY_FAILURE.json",
-    "cases/EP-008_RESOURCE_CONSTRAINT_VIOLATION.json",
-    "cases/EP-009_POLICY_CHANGE_BEFORE_EXECUTION.json",
-    "cases/EP-010_MULTI_ACTOR_AUTHORITY_CONFLICT.json",
-]
+CASE_PATHS = sorted(str(path) for path in Path("cases").rglob("*.json"))
 
 
 def load_case(path: str) -> ExecutionCase:
@@ -151,7 +141,6 @@ def main():
         case_paths = CASE_PATHS
 
     results = []
-
     for case_path in case_paths:
         case = load_case(case_path)
         result = evaluate_case(case)
@@ -167,3 +156,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
