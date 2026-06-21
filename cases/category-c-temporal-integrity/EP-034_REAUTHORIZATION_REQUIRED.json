@@ -1,0 +1,16 @@
+{
+  "case_id": "EP-034",
+  "title": "Reauthorization Required Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "authorization_expiration": "2026-05-01",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_date": "2026-06-20",
+    "authorization_status": "EXPIRED"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

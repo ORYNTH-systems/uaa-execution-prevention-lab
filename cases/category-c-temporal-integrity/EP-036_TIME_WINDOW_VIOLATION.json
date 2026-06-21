@@ -1,0 +1,16 @@
+{
+  "case_id": "EP-036",
+  "title": "Time Window Violation Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "authorization_expiration": "2026-06-15",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_date": "2026-06-20",
+    "authorization_status": "EXPIRED"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

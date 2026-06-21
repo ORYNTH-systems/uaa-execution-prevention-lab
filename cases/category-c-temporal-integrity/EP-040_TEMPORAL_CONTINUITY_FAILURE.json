@@ -1,0 +1,16 @@
+{
+  "case_id": "EP-040",
+  "title": "Temporal Continuity Failure Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "authorization_expiration": "2026-03-15",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_date": "2026-06-20",
+    "authorization_status": "EXPIRED"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

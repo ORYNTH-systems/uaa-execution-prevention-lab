@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-035",
+  "title": "Scheduled Action Expiry Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "authorization_expiration": "2026-04-15",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "current_date": "2026-06-20"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}
