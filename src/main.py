@@ -48,6 +48,16 @@ CASE_PATHS = [
     "cases/category-b-intent-integrity/EP-028_MULTI_STEP_DRIFT.json",
     "cases/category-b-intent-integrity/EP-029_SIDE_EFFECT_INTRODUCTION.json",
     "cases/category-b-intent-integrity/EP-030_COMPOSITE_INTENT_DRIFT.json",
+    "cases/category-c-temporal-integrity/EP-031_AUTHORIZATION_TIMEOUT.json",
+    "cases/category-c-temporal-integrity/EP-032_APPROVAL_STALENESS.json",
+    "cases/category-c-temporal-integrity/EP-033_DEFERRED_EXECUTION_EXPIRY.json",
+    "cases/category-c-temporal-integrity/EP-034_REAUTHORIZATION_REQUIRED.json",
+    "cases/category-c-temporal-integrity/EP-035_SCHEDULED_ACTION_EXPIRY.json",
+    "cases/category-c-temporal-integrity/EP-036_TIME_WINDOW_VIOLATION.json",
+    "cases/category-c-temporal-integrity/EP-037_DELAYED_WORKFLOW_EXPIRY.json",
+    "cases/category-c-temporal-integrity/EP-038_TEMPORAL_REVALIDATION_FAILURE.json",
+    "cases/category-c-temporal-integrity/EP-039_AUTHORITY_DECAY.json",
+    "cases/category-c-temporal-integrity/EP-040_TEMPORAL_CONTINUITY_FAILURE.json",
 ]
 
 
