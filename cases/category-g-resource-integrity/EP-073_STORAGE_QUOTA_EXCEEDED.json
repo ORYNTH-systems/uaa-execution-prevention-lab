@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-073",
+  "title": "Storage Quota Exceeded Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "resource_limit": 500,
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "resource_required": 1200
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

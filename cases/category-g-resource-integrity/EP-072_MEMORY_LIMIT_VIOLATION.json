@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-072",
+  "title": "Memory Limit Violation Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "resource_limit": 4096,
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "resource_required": 8192
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

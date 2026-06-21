@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-077",
+  "title": "Capacity Reduction Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "resource_limit": 5000,
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "resource_required": 6500
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

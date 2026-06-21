@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-075",
+  "title": "Execution Cost Overflow Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "resource_limit": 10000,
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "resource_required": 25000
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

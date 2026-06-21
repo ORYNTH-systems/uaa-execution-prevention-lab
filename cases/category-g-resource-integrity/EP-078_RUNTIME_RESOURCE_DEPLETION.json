@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-078",
+  "title": "Runtime Resource Depletion Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "resource_limit": 3000,
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "resource_required": 4500
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

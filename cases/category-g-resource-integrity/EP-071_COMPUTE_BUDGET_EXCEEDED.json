@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-071",
+  "title": "Compute Budget Exceeded Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "resource_limit": 1000,
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "resource_required": 2500
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

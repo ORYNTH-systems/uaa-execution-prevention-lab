@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-076",
+  "title": "Resource Allocation Revoked Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "resource_limit": 2000,
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "resource_required": 4000
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}
