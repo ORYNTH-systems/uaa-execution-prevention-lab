@@ -1,0 +1,16 @@
+{
+  "case_id": "EP-048",
+  "title": "Regulatory Risk Trigger Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "counterparty_status": "COMPLIANT",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "counterparty_status": "REGULATORY_REVIEW",
+    "risk_flag": true
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

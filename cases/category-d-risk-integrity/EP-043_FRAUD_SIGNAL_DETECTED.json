@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-043",
+  "title": "Fraud Signal Detected Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "counterparty_status": "VERIFIED",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "risk_flag": true
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "case_id": "EP-041",
+  "title": "Counterparty Risk Escalation Before Settlement",
+  "initial_state": {
+    "authorization": "VALID",
+    "counterparty_status": "LOW_RISK",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "counterparty_status": "HIGH_RISK",
+    "risk_flag": true
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "case_id": "EP-049",
+  "title": "Portfolio Risk Threshold Breach Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "counterparty_status": "WITHIN_THRESHOLD",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "counterparty_status": "THRESHOLD_BREACHED",
+    "risk_flag": true
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

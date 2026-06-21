@@ -1,0 +1,16 @@
+{
+  "case_id": "EP-050",
+  "title": "Compound Risk Escalation Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "counterparty_status": "LOW_RISK",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "counterparty_status": "SANCTIONED",
+    "risk_flag": true
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

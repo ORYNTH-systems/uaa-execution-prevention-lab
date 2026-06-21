@@ -1,0 +1,16 @@
+{
+  "case_id": "EP-047",
+  "title": "Vendor Risk Reclassification Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "counterparty_status": "APPROVED_VENDOR",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "counterparty_status": "HIGH_RISK_VENDOR",
+    "risk_flag": true
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "case_id": "EP-042",
+  "title": "Credit Rating Downgrade Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "counterparty_status": "INVESTMENT_GRADE",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "counterparty_status": "JUNK_RATED",
+    "risk_flag": true
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "case_id": "EP-046",
+  "title": "Settlement Exposure Increase Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "counterparty_status": "LOW_EXPOSURE",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "counterparty_status": "HIGH_EXPOSURE",
+    "risk_flag": true
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "case_id": "EP-045",
+  "title": "Sanctions List Match Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "counterparty_status": "APPROVED",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "counterparty_status": "SANCTIONED",
+    "risk_flag": true
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}
