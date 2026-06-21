@@ -1,28 +1,11 @@
+﻿from rules import ADMISSIBILITY_RULES
 from models import ExecutionCase
-from reconciliation import (
-    vendor_state_changed,
-    intent_drift_detected,
-    authorization_expired,
-    counterparty_risk_state_changed,
-    delegation_revoked,
-    identity_continuity_failed,
-    resource_constraint_violated,
-    policy_change_detected,
-)
-
-ADMISSIBILITY_RULES = [
-    ("vendor_state_changed", vendor_state_changed),
-    ("intent_drift_detected", intent_drift_detected),
-    ("authorization_expired", authorization_expired),
-    ("counterparty_risk_state_changed", counterparty_risk_state_changed),
-    ("delegation_revoked", delegation_revoked),
-    ("identity_continuity_failed", identity_continuity_failed),
-    ("resource_constraint_violated", resource_constraint_violated),
-    ("policy_change_detected", policy_change_detected),
-]
 
 
 def collect_violations(case: ExecutionCase) -> list[str]:
+    if isinstance(case, list):
+        raise TypeError("collect_violations received list instead of ExecutionCase")
+
     violations = []
 
     for rule_name, rule in ADMISSIBILITY_RULES:

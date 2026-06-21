@@ -1,45 +1,31 @@
-from dataclasses import dataclass
-
-
-@dataclass(frozen=True)
 class ExecutionCase:
-    case_id: str
-    title: str
-    authorization: str
-    initial_vendor_status: str
-    current_vendor_status: str
-    execution_requested: bool
+    def __init__(self, **data):
+        self._data = data
 
-    authorized_intent: str = ""
-    current_action: str = ""
+    def __getattr__(self, name):
+        return self._data.get(name, "")
 
-    authorization_expiration: str = ""
-    current_date: str = ""
-    current_authorization_status: str = ""
-
-    initial_counterparty_status: str = ""
-    current_counterparty_status: str = ""
-    risk_flag: bool = False
-
-    initial_delegation_status: str = ""
-    current_delegation_status: str = ""
-
-    authorized_actor: str = ""
-    current_actor: str = ""
-
-    resource_limit: int = 0
-    resource_required: int = 0
-
-    policy_version: str = ""
-    current_policy_version: str = ""
+    def get(self, name, default=None):
+        return self._data.get(name, default)
 
 
-@dataclass(frozen=True)
 class EvaluationResult:
-    case_id: str
-    authorization_valid: bool
-    reconciliation_required: bool
-    admissibility: bool
-    execution_result: str
-    failure_prevented: bool
-    violations: list[str]
+    def __init__(
+        self,
+        case_id,
+        authorization_valid,
+        reconciliation_required,
+        admissibility,
+        execution_result,
+        failure_prevented,
+        violations,
+        state_snapshot=None
+    ):
+        self.case_id = case_id
+        self.authorization_valid = authorization_valid
+        self.reconciliation_required = reconciliation_required
+        self.admissibility = admissibility
+        self.execution_result = execution_result
+        self.failure_prevented = failure_prevented
+        self.violations = violations
+        self.state_snapshot = state_snapshot or {}
