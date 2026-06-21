@@ -58,6 +58,16 @@ CASE_PATHS = [
     "cases/category-c-temporal-integrity/EP-038_TEMPORAL_REVALIDATION_FAILURE.json",
     "cases/category-c-temporal-integrity/EP-039_AUTHORITY_DECAY.json",
     "cases/category-c-temporal-integrity/EP-040_TEMPORAL_CONTINUITY_FAILURE.json",
+    "cases/category-d-risk-integrity/EP-041_COUNTERPARTY_RISK_ESCALATION.json",
+    "cases/category-d-risk-integrity/EP-042_CREDIT_RATING_DOWNGRADE.json",
+    "cases/category-d-risk-integrity/EP-043_FRAUD_SIGNAL_DETECTED.json",
+    "cases/category-d-risk-integrity/EP-044_AML_FLAG_INTRODUCTION.json",
+    "cases/category-d-risk-integrity/EP-045_SANCTIONS_MATCH.json",
+    "cases/category-d-risk-integrity/EP-046_SETTLEMENT_EXPOSURE_INCREASE.json",
+    "cases/category-d-risk-integrity/EP-047_VENDOR_RISK_RECLASSIFICATION.json",
+    "cases/category-d-risk-integrity/EP-048_REGULATORY_RISK_TRIGGER.json",
+    "cases/category-d-risk-integrity/EP-049_PORTFOLIO_RISK_THRESHOLD_BREACH.json",
+    "cases/category-d-risk-integrity/EP-050_COMPOUND_RISK_ESCALATION.json",
 ]
 
 
