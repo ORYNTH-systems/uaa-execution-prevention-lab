@@ -1,0 +1,19 @@
+{
+  "case_id": "EP-096",
+  "title": "State Risk and Policy Compound Failure Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "vendor_status": "APPROVED",
+    "counterparty_status": "LOW_RISK",
+    "policy_version": "POLICY-V1"
+  },
+  "state_change": {
+    "vendor_status": "BLACKLISTED",
+    "counterparty_status": "HIGH_RISK",
+    "risk_flag": true,
+    "policy_version": "POLICY-V2"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

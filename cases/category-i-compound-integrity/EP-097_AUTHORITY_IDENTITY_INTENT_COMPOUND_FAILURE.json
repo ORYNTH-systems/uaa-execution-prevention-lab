@@ -1,0 +1,18 @@
+{
+  "case_id": "EP-097",
+  "title": "Authority Identity and Intent Compound Failure Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "delegation_status": "ACTIVE",
+    "authorized_actor": "ACTOR-A",
+    "authorized_intent": "Review access request"
+  },
+  "state_change": {
+    "delegation_status": "REVOKED",
+    "current_actor": "ACTOR-B",
+    "current_agent_action": "Approve privileged access"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

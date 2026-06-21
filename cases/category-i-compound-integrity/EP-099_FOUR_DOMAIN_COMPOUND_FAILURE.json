@@ -1,0 +1,20 @@
+{
+  "case_id": "EP-099",
+  "title": "Four Domain Compound Failure Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "vendor_status": "APPROVED",
+    "authorization_expiration": "2026-06-15",
+    "delegation_status": "ACTIVE",
+    "policy_version": "POLICY-V1"
+  },
+  "state_change": {
+    "vendor_status": "SUSPENDED",
+    "current_date": "2026-06-20",
+    "delegation_status": "REVOKED",
+    "policy_version": "POLICY-V2"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

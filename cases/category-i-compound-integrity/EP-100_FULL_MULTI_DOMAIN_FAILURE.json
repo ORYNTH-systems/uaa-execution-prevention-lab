@@ -1,0 +1,29 @@
+{
+  "case_id": "EP-100",
+  "title": "Full Multi Domain Integrity Failure Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "vendor_status": "APPROVED",
+    "authorized_intent": "Review settlement exception report",
+    "authorization_expiration": "2026-06-15",
+    "counterparty_status": "LOW_RISK",
+    "delegation_status": "ACTIVE",
+    "authorized_actor": "ACTOR-A",
+    "resource_limit": 1000,
+    "policy_version": "POLICY-V1"
+  },
+  "state_change": {
+    "vendor_status": "BLACKLISTED",
+    "current_agent_action": "Release settlement payment",
+    "current_date": "2026-06-20",
+    "counterparty_status": "SANCTIONED",
+    "risk_flag": true,
+    "delegation_status": "REVOKED",
+    "current_actor": "ACTOR-B",
+    "resource_required": 2500,
+    "policy_version": "POLICY-V2"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

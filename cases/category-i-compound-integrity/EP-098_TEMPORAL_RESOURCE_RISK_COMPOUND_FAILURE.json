@@ -1,0 +1,19 @@
+{
+  "case_id": "EP-098",
+  "title": "Temporal Resource and Risk Compound Failure Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "authorization_expiration": "2026-06-15",
+    "resource_limit": 1000,
+    "counterparty_status": "LOW_RISK"
+  },
+  "state_change": {
+    "current_date": "2026-06-20",
+    "resource_required": 2500,
+    "counterparty_status": "HIGH_RISK",
+    "risk_flag": true
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}
