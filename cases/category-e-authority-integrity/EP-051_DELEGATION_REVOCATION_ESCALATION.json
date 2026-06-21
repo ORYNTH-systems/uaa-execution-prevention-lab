@@ -1,0 +1,15 @@
+{
+  "case_id": "EP-051",
+  "title": "Delegation Revocation Escalation Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "delegation_status": "ACTIVE",
+    "vendor_status": "APPROVED"
+  },
+  "state_change": {
+    "delegation_status": "REVOKED"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}
