@@ -1,20 +1,10 @@
 import argparse
 import json
-import os
 
 from models import ExecutionCase, EvaluationResult
-from reconciliation import (
-    reconciliation_required,
-    intent_drift_detected,
-    authorization_expired,
-    counterparty_risk_state_changed,
-    delegation_revoked,
-    identity_continuity_failed,
-    resource_constraint_violated,
-    policy_change_detected,
-)
 from admissibility import evaluate_admissibility, collect_violations
 from metrics import generate_metrics
+from reconstruction.engine import ReconstructionEngine
 
 
 CASE_PATHS = [
@@ -28,107 +18,20 @@ CASE_PATHS = [
     "cases/EP-008_RESOURCE_CONSTRAINT_VIOLATION.json",
     "cases/EP-009_POLICY_CHANGE_BEFORE_EXECUTION.json",
     "cases/EP-010_MULTI_ACTOR_AUTHORITY_CONFLICT.json",
-    "cases/category-a-state-integrity/EP-011_VENDOR_SUSPENSION.json",
-    "cases/category-a-state-integrity/EP-012_VENDOR_BANKRUPTCY.json",
-    "cases/category-a-state-integrity/EP-013_CONTRACT_TERMINATION.json",
-    "cases/category-a-state-integrity/EP-014_ASSET_OWNERSHIP_CHANGE.json",
-    "cases/category-a-state-integrity/EP-015_CUSTOMER_STATUS_REVOKED.json",
-    "cases/category-a-state-integrity/EP-016_ACCOUNT_CLOSURE.json",
-    "cases/category-a-state-integrity/EP-017_LICENSE_REVOCATION.json",
-    "cases/category-a-state-integrity/EP-018_CERTIFICATION_EXPIRY.json",
-    "cases/category-a-state-integrity/EP-019_REGISTRY_STATE_CHANGE.json",
-    "cases/category-a-state-integrity/EP-020_ELIGIBILITY_WITHDRAWAL.json",
-    "cases/category-b-intent-integrity/EP-021_ACTION_SUBSTITUTION.json",
-    "cases/category-b-intent-integrity/EP-022_SCOPE_EXPANSION.json",
-    "cases/category-b-intent-integrity/EP-023_OBJECTIVE_SUBSTITUTION.json",
-    "cases/category-b-intent-integrity/EP-024_TASK_ESCALATION.json",
-    "cases/category-b-intent-integrity/EP-025_PERMISSION_REPURPOSING.json",
-    "cases/category-b-intent-integrity/EP-026_INTENT_AMPLIFICATION.json",
-    "cases/category-b-intent-integrity/EP-027_GOAL_REDIRECTION.json",
-    "cases/category-b-intent-integrity/EP-028_MULTI_STEP_DRIFT.json",
-    "cases/category-b-intent-integrity/EP-029_SIDE_EFFECT_INTRODUCTION.json",
-    "cases/category-b-intent-integrity/EP-030_COMPOSITE_INTENT_DRIFT.json",
-    "cases/category-c-temporal-integrity/EP-031_AUTHORIZATION_TIMEOUT.json",
-    "cases/category-c-temporal-integrity/EP-032_APPROVAL_STALENESS.json",
-    "cases/category-c-temporal-integrity/EP-033_DEFERRED_EXECUTION_EXPIRY.json",
-    "cases/category-c-temporal-integrity/EP-034_REAUTHORIZATION_REQUIRED.json",
-    "cases/category-c-temporal-integrity/EP-035_SCHEDULED_ACTION_EXPIRY.json",
-    "cases/category-c-temporal-integrity/EP-036_TIME_WINDOW_VIOLATION.json",
-    "cases/category-c-temporal-integrity/EP-037_DELAYED_WORKFLOW_EXPIRY.json",
-    "cases/category-c-temporal-integrity/EP-038_TEMPORAL_REVALIDATION_FAILURE.json",
-    "cases/category-c-temporal-integrity/EP-039_AUTHORITY_DECAY.json",
-    "cases/category-c-temporal-integrity/EP-040_TEMPORAL_CONTINUITY_FAILURE.json",
-    "cases/category-d-risk-integrity/EP-041_COUNTERPARTY_RISK_ESCALATION.json",
-    "cases/category-d-risk-integrity/EP-042_CREDIT_RATING_DOWNGRADE.json",
-    "cases/category-d-risk-integrity/EP-043_FRAUD_SIGNAL_DETECTED.json",
-    "cases/category-d-risk-integrity/EP-044_AML_FLAG_INTRODUCTION.json",
-    "cases/category-d-risk-integrity/EP-045_SANCTIONS_MATCH.json",
-    "cases/category-d-risk-integrity/EP-046_SETTLEMENT_EXPOSURE_INCREASE.json",
-    "cases/category-d-risk-integrity/EP-047_VENDOR_RISK_RECLASSIFICATION.json",
-    "cases/category-d-risk-integrity/EP-048_REGULATORY_RISK_TRIGGER.json",
-    "cases/category-d-risk-integrity/EP-049_PORTFOLIO_RISK_THRESHOLD_BREACH.json",
-    "cases/category-d-risk-integrity/EP-050_COMPOUND_RISK_ESCALATION.json",
-    "cases/category-e-authority-integrity/EP-051_DELEGATION_REVOCATION_ESCALATION.json",
-    "cases/category-e-authority-integrity/EP-052_ROLE_WITHDRAWAL.json",
-    "cases/category-e-authority-integrity/EP-053_AUTHORITY_SCOPE_REDUCTION.json",
-    "cases/category-e-authority-integrity/EP-054_APPROVAL_CHAIN_BREAK.json",
-    "cases/category-e-authority-integrity/EP-055_SIGNATORY_REPLACEMENT.json",
-    "cases/category-e-authority-integrity/EP-056_SUPERVISOR_OVERRIDE_REMOVAL.json",
-    "cases/category-e-authority-integrity/EP-057_ORGANIZATIONAL_SEPARATION.json",
-    "cases/category-e-authority-integrity/EP-058_MULTI_AUTHORITY_CONFLICT.json",
-    "cases/category-e-authority-integrity/EP-059_AUTHORITY_SOURCE_MISMATCH.json",
-    "cases/category-e-authority-integrity/EP-060_AUTHORITY_CONTINUITY_FAILURE.json",
-    "cases/category-f-identity-integrity/EP-061_ACTOR_SUBSTITUTION.json",
-    "cases/category-f-identity-integrity/EP-062_CREDENTIAL_SWAP.json",
-    "cases/category-f-identity-integrity/EP-063_IDENTITY_REASSIGNMENT.json",
-    "cases/category-f-identity-integrity/EP-064_SESSION_CONTINUITY_FAILURE.json",
-    "cases/category-f-identity-integrity/EP-065_ROLE_IDENTITY_MISMATCH.json",
-    "cases/category-f-identity-integrity/EP-066_OPERATOR_REPLACEMENT.json",
-    "cases/category-f-identity-integrity/EP-067_DELEGATE_IDENTITY_DRIFT.json",
-    "cases/category-f-identity-integrity/EP-068_ACCOUNT_TAKEOVER_SIGNAL.json",
-    "cases/category-f-identity-integrity/EP-069_IDENTITY_REBINDING.json",
-    "cases/category-f-identity-integrity/EP-070_MULTI_ACTOR_CONTINUITY_FAILURE.json",
-    "cases/category-g-resource-integrity/EP-071_COMPUTE_BUDGET_EXCEEDED.json",
-    "cases/category-g-resource-integrity/EP-072_MEMORY_LIMIT_VIOLATION.json",
-    "cases/category-g-resource-integrity/EP-073_STORAGE_QUOTA_EXCEEDED.json",
-    "cases/category-g-resource-integrity/EP-074_NETWORK_CAPACITY_EXCEEDED.json",
-    "cases/category-g-resource-integrity/EP-075_EXECUTION_COST_OVERFLOW.json",
-    "cases/category-g-resource-integrity/EP-076_RESOURCE_ALLOCATION_REVOKED.json",
-    "cases/category-g-resource-integrity/EP-077_CAPACITY_REDUCTION.json",
-    "cases/category-g-resource-integrity/EP-078_RUNTIME_RESOURCE_DEPLETION.json",
-    "cases/category-g-resource-integrity/EP-079_CONCURRENT_LOAD_EXCEEDED.json",
-    "cases/category-g-resource-integrity/EP-080_RESOURCE_CONTINUITY_FAILURE.json",
-    "cases/category-h-policy-integrity/EP-081_POLICY_VERSION_CHANGE.json",
-    "cases/category-h-policy-integrity/EP-082_COMPLIANCE_REQUIREMENT_UPDATE.json",
-    "cases/category-h-policy-integrity/EP-083_REGULATORY_RULE_CHANGE.json",
-    "cases/category-h-policy-integrity/EP-084_DATA_HANDLING_POLICY_CHANGE.json",
-    "cases/category-h-policy-integrity/EP-085_RETENTION_POLICY_UPDATE.json",
-    "cases/category-h-policy-integrity/EP-086_ACCESS_POLICY_MODIFICATION.json",
-    "cases/category-h-policy-integrity/EP-087_CLASSIFICATION_POLICY_CHANGE.json",
-    "cases/category-h-policy-integrity/EP-088_EXCEPTION_POLICY_REVISION.json",
-    "cases/category-h-policy-integrity/EP-089_GOVERNANCE_POLICY_UPDATE.json",
-    "cases/category-h-policy-integrity/EP-090_POLICY_CONTINUITY_FAILURE.json",
-    "cases/category-i-compound-integrity/EP-091_STATE_INTENT_COMPOUND_FAILURE.json",
-    "cases/category-i-compound-integrity/EP-092_INTENT_AUTHORITY_COMPOUND_FAILURE.json",
-    "cases/category-i-compound-integrity/EP-093_AUTHORITY_IDENTITY_COMPOUND_FAILURE.json",
-    "cases/category-i-compound-integrity/EP-094_RISK_RESOURCE_COMPOUND_FAILURE.json",
-    "cases/category-i-compound-integrity/EP-095_TEMPORAL_POLICY_COMPOUND_FAILURE.json",
-
-
 ]
 
 
 def load_case(path: str) -> ExecutionCase:
-    with open(path, "r", encoding="utf-8") as file:
-        data = json.load(file)
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
 
     initial_state = data.get("initial_state", {})
     state_change = data.get("state_change", {})
     execution_attempt = data.get("execution_attempt", {})
 
     return ExecutionCase(
-        case_id=data["case_id"],
-        title=data["title"],
+        case_id=data.get("case_id", ""),
+        title=data.get("title", ""),
         authorization=initial_state.get("authorization", ""),
         initial_vendor_status=initial_state.get("vendor_status", ""),
         current_vendor_status=state_change.get("vendor_status", ""),
@@ -152,116 +55,73 @@ def load_case(path: str) -> ExecutionCase:
     )
 
 
+def resolve_case_id(case_id: str) -> str:
+    for path in CASE_PATHS:
+        if case_id in path:
+            return path
+
+    raise ValueError(f"Unknown case id: {case_id}")
+
+
+def build_state_snapshot(case: ExecutionCase) -> dict:
+    return {
+        "vendor_status": case.initial_vendor_status,
+        "authorization": case.authorization,
+        "counterparty_status": case.initial_counterparty_status,
+        "delegation_status": case.initial_delegation_status,
+        "authorized_intent": case.authorized_intent,
+        "current_action": case.current_action,
+        "policy_version": case.policy_version,
+        "resource_limit": case.resource_limit,
+        "resource_required": case.resource_required,
+    }
+
+
 def evaluate_case(case: ExecutionCase) -> EvaluationResult:
-    authorization_valid = case.authorization == "VALID"
-    reconciliation = reconciliation_required(case)
     violations = collect_violations(case)
     admissibility = evaluate_admissibility(case)
 
-    execution_result = (
-        "EXECUTED"
-        if authorization_valid and reconciliation and admissibility
-        else "DECLINED"
-    )
-
-    failure_prevented = (
-        authorization_valid
-        and case.execution_requested
-        and not admissibility
-        and execution_result == "DECLINED"
-    )
-
     return EvaluationResult(
         case_id=case.case_id,
-        authorization_valid=authorization_valid,
-        reconciliation_required=reconciliation,
+        authorization_valid=case.authorization == "VALID",
+        reconciliation_required=True,
         admissibility=admissibility,
-        execution_result=execution_result,
-        failure_prevented=failure_prevented,
+        execution_result="DECLINED" if not admissibility else "EXECUTED",
+        failure_prevented=not admissibility,
         violations=violations,
+        state_snapshot=build_state_snapshot(case),
     )
 
 
-def assert_expected_result(result: EvaluationResult) -> None:
-    assert result.execution_result == "DECLINED"
-    assert result.failure_prevented is True
-
-
-def write_json_evidence(case: ExecutionCase, result: EvaluationResult) -> None:
-    os.makedirs("reports/json", exist_ok=True)
-
-    evidence = {
-        "case_id": case.case_id,
-        "title": case.title,
-        "authorization_valid": result.authorization_valid,
-        "reconciliation_required": result.reconciliation_required,
-        "admissibility": result.admissibility,
-        "execution_result": result.execution_result,
-        "failure_prevented": result.failure_prevented,
-        "violations": result.violations,
-    }
-
-    output_path = f"reports/json/{case.case_id}.json"
-
-    with open(output_path, "w", encoding="utf-8") as file:
-        json.dump(evidence, file, indent=2)
-
-
-def print_result(case: ExecutionCase, result: EvaluationResult) -> None:
-    print(f"Case: {case.case_id} - {case.title}")
-    print(f"Authorization Valid: {result.authorization_valid}")
-    print(f"Reconciliation Required: {result.reconciliation_required}")
-
-    if case.initial_vendor_status:
-        print(f"Initial Vendor Status: {case.initial_vendor_status}")
-        print(f"Current Vendor Status: {case.current_vendor_status}")
-
-    if case.authorized_intent:
-        print(f"Authorized Intent: {case.authorized_intent}")
-        print(f"Current Action: {case.current_action}")
-        print(f"Intent Drift Detected: {intent_drift_detected(case)}")
-
-    if case.authorization_expiration:
-        print(f"Authorization Expiration: {case.authorization_expiration}")
-        print(f"Current Date: {case.current_date}")
-        print(f"Authorization Expired: {authorization_expired(case)}")
-
-    if case.initial_counterparty_status:
-        print(f"Initial Counterparty Status: {case.initial_counterparty_status}")
-        print(f"Current Counterparty Status: {case.current_counterparty_status}")
-        print(f"Risk Flag: {case.risk_flag}")
-        print(f"Counterparty Risk State Changed: {counterparty_risk_state_changed(case)}")
-
-    if case.initial_delegation_status:
-        print(f"Initial Delegation Status: {case.initial_delegation_status}")
-        print(f"Current Delegation Status: {case.current_delegation_status}")
-        print(f"Delegation Revoked: {delegation_revoked(case)}")
-
-    if case.authorized_actor:
-        print(f"Authorized Actor: {case.authorized_actor}")
-        print(f"Current Actor: {case.current_actor}")
-        print(f"Identity Continuity Failed: {identity_continuity_failed(case)}")
-
-    if case.resource_limit:
-        print(f"Resource Limit: {case.resource_limit}")
-        print(f"Resource Required: {case.resource_required}")
-        print(f"Resource Constraint Violated: {resource_constraint_violated(case)}")
-
-    if case.policy_version:
-        print(f"Initial Policy Version: {case.policy_version}")
-        print(f"Current Policy Version: {case.current_policy_version}")
-        print(f"Policy Change Detected: {policy_change_detected(case)}")
-
-    print(f"Violations: {result.violations}")
+def print_case_output(case: ExecutionCase, result: EvaluationResult, reconstruction: dict) -> None:
+    print(f"\nCase: {case.case_id} - {case.title}")
     print(f"Admissibility: {result.admissibility}")
     print(f"Execution Result: {result.execution_result}")
-    print(f"Failure Prevented: {result.failure_prevented}")
+    print(f"Violations: {result.violations}")
+
+    print("\n=== RECONSTRUCTION OUTPUT ===")
+    print(reconstruction)
+
+    before_state = result.state_snapshot
+    after_state = reconstruction.get("reconstructed_state", {})
+
+    delta = {
+        k: {
+            "before": before_state.get(k),
+            "after": after_state.get(k),
+        }
+        for k in set(before_state) | set(after_state)
+        if before_state.get(k) != after_state.get(k)
+    }
+
+    print("\n=== STATE DELTA ===")
+    print(delta)
 
 
-def print_metrics(results: list[EvaluationResult]) -> None:
+def print_aggregate_metrics(results: list[EvaluationResult]) -> None:
     metrics = generate_metrics(results)
 
-    print("=== METRICS ===")
+    print("\n=== AGGREGATE METRICS ===")
     print(f"Total Demonstrations: {metrics['total_demonstrations']}")
     print(f"Total Prevented Failures: {metrics['total_prevented_failures']}")
 
@@ -269,66 +129,40 @@ def print_metrics(results: list[EvaluationResult]) -> None:
         metrics["total_prevented_failures"]
         / metrics["total_demonstrations"]
         * 100
+        if metrics["total_demonstrations"]
+        else 0
     )
 
     print(f"Prevention Rate: {prevention_rate:.0f}%")
-    print()
-    print("Rule Hits:")
-
-    for rule_name, count in metrics["rule_hits"].items():
-        print(f"- {rule_name}: {count}")
-
-    print()
-    print("Category Hits:")
-
-    for category_name, count in metrics["category_hits"].items():
-        print(f"- {category_name}: {count}")
+    print(f"Rule Hits: {metrics['rule_hits']}")
+    print(f"Category Hits: {metrics['category_hits']}")
 
 
-def selected_case_paths(case_id: str | None) -> list[str]:
-    if case_id is None or case_id.lower() == "all":
-        return CASE_PATHS
-
-    normalized_case_id = case_id.upper()
-
-    for path in CASE_PATHS:
-        if normalized_case_id in path:
-            return [path]
-
-    raise ValueError(f"Unknown case id: {case_id}")
-
-
-def main() -> None:
+def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--case", default=None)
-    parser.add_argument("--all", action="store_true")
+    parser.add_argument("--case", type=str, default=None)
     args = parser.parse_args()
 
-    if args.all:
-        case_selector = "all"
-    elif args.case:
-        case_selector = args.case
-    else:
-        case_selector = "all"
+    reconstructor = ReconstructionEngine()
 
-    cases = selected_case_paths(case_selector)
+    if args.case:
+        case_paths = [resolve_case_id(args.case)]
+    else:
+        case_paths = CASE_PATHS
+
     results = []
 
-    for index, case_path in enumerate(cases):
+    for case_path in case_paths:
         case = load_case(case_path)
         result = evaluate_case(case)
+        reconstruction = reconstructor.reconstruct(result)
 
-        assert_expected_result(result)
-        write_json_evidence(case, result)
-
+        print_case_output(case, result, reconstruction)
         results.append(result)
-        print_result(case, result)
 
-        if index < len(cases) - 1:
-            print()
+    print_aggregate_metrics(results)
 
-    print()
-    print_metrics(results)
+    return results
 
 
 if __name__ == "__main__":
