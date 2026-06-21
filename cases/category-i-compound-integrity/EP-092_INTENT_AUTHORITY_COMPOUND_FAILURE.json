@@ -1,0 +1,16 @@
+{
+  "case_id": "EP-092",
+  "title": "Intent and Authority Compound Failure Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "delegation_status": "ACTIVE",
+    "authorized_intent": "Review customer support tickets"
+  },
+  "state_change": {
+    "delegation_status": "REVOKED"
+  },
+  "execution_attempt": {
+    "current_action": "Issue customer refunds",
+    "requested": true
+  }
+}

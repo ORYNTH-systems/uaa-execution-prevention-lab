@@ -1,0 +1,16 @@
+{
+  "case_id": "EP-095",
+  "title": "Temporal and Policy Compound Failure Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "authorization_expiration": "2026-06-15",
+    "policy_version": "POLICY-V1"
+  },
+  "state_change": {
+    "current_date": "2026-06-20",
+    "policy_version": "POLICY-V2"
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

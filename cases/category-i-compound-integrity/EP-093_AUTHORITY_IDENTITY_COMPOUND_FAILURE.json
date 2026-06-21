@@ -1,0 +1,16 @@
+{
+  "case_id": "EP-093",
+  "title": "Authority and Identity Compound Failure Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "delegation_status": "ACTIVE",
+    "authorized_actor": "ACTOR-A"
+  },
+  "state_change": {
+    "delegation_status": "REVOKED"
+  },
+  "execution_attempt": {
+    "current_actor": "ACTOR-B",
+    "requested": true
+  }
+}

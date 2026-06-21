@@ -1,0 +1,16 @@
+{
+  "case_id": "EP-091",
+  "title": "State and Intent Compound Failure Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "vendor_status": "APPROVED",
+    "authorized_intent": "Generate monthly compliance report"
+  },
+  "state_change": {
+    "vendor_status": "BLACKLISTED"
+  },
+  "execution_attempt": {
+    "current_action": "Delete compliance report archive",
+    "requested": true
+  }
+}

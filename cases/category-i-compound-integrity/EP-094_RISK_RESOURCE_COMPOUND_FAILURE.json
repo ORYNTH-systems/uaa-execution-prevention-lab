@@ -1,0 +1,17 @@
+{
+  "case_id": "EP-094",
+  "title": "Risk and Resource Compound Failure Before Execution",
+  "initial_state": {
+    "authorization": "VALID",
+    "counterparty_status": "LOW_RISK",
+    "resource_limit": 1000
+  },
+  "state_change": {
+    "counterparty_status": "HIGH_RISK",
+    "risk_flag": true,
+    "resource_required": 2500
+  },
+  "execution_attempt": {
+    "requested": true
+  }
+}

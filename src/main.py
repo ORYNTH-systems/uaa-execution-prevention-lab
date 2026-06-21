@@ -108,6 +108,12 @@ CASE_PATHS = [
     "cases/category-h-policy-integrity/EP-088_EXCEPTION_POLICY_REVISION.json",
     "cases/category-h-policy-integrity/EP-089_GOVERNANCE_POLICY_UPDATE.json",
     "cases/category-h-policy-integrity/EP-090_POLICY_CONTINUITY_FAILURE.json",
+    "cases/category-i-compound-integrity/EP-091_STATE_INTENT_COMPOUND_FAILURE.json",
+    "cases/category-i-compound-integrity/EP-092_INTENT_AUTHORITY_COMPOUND_FAILURE.json",
+    "cases/category-i-compound-integrity/EP-093_AUTHORITY_IDENTITY_COMPOUND_FAILURE.json",
+    "cases/category-i-compound-integrity/EP-094_RISK_RESOURCE_COMPOUND_FAILURE.json",
+    "cases/category-i-compound-integrity/EP-095_TEMPORAL_POLICY_COMPOUND_FAILURE.json",
+
 
 ]
 
